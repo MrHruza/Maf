@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="icon" type="image/png" href="https://github.com/user-attachments/assets/139e951f-5808-491f-9637-c25227c8115f">
+    <title>Majnuj | Minecraft Server</title>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ROZTAŽENÍ WEBU A NULOVÁNÍ BÍLÝCH OKRAJŮ */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            overflow-x: hidden;
+            background-color: #1f1f27;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* PEVNÁ HORNÍ LIŠTA (NAVBAR) */
+        .navbar-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100% !important;
+            height: 80px;
+            background-color: #1f1f27;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            box-sizing: border-box;
+            padding: 0 30px;
+        }
+
+        .navbar-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-logo img {
+            height: 42px;
+            width: auto;
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-item {
+            color: #b5b9c4;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: #ffffff;
+        }
+
+        .nav-btn-shop {
+            background-color: #ffcc00;
+            color: #000000;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 800;
+            padding: 12px 28px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .nav-btn-shop:hover {
+            background-color: #e6b800;
+            transform: scale(1.03);
+        }
+
+        section {
+            scroll-margin-top: 80px; 
+        }
+
+        /* HERO SEKCE S POZADÍM */
+        .hero-section {
+            background: url('https://www.minecraft.net/content/dam/minecraftnet/archive/6581250e483233ceb023d260eef9ed6a-header.jpg') no-repeat center center;
+            background-size: cover;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            padding-top: 80px;
+            padding-bottom: 120px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 25px;
+            z-index: 2;
+        }
+
+        .hero-logo {
+            max-width: 100%;
+            width: 840px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero-play-btn {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #f0b638;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 18px 45px;
+            border-radius: 16px;
+            box-shadow: 0 6px 0 #d49f2c, 0 12px 25px rgba(0,0,0,0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+        .hero-play-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #d49f2c, 0 15px 30px rgba(0,0,0,0.3);
+            filter: brightness(1.05);
+        }
+
+        .hero-play-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #d49f2c, 0 5px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero-ip-box {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            padding: 10px 24px;
+            border-radius: 30px;
+            color: #1e3153;
+            font-size: 0.95rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        .hero-ip-box:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.03);
+        }
+
+        .hero-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .hero-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
+        }
+
+        .hero-wave .wave-fill {
+            fill: #1f1f27;
+        }
+
+        /* WELCOME SEKCE */
+        .welcome-section {
+            background-color: #1f1f27; 
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .welcome-container {
+            width: 100%;
+            max-width: 1150px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .main-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .video-side {
+            flex: 1.1;
+            width: 100%;
+        }
+
+        .video-responsive-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-responsive-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .text-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .intro-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #f0b638; 
+            text-transform: uppercase;
+            margin: 0 0 20px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .intro-perex {
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-weight: 500;
+            margin: 0 0 20px 0;
+            text-align: justify;
+        }
+
+        .action-btn-brown {
+            background-color: #f0b638; 
+            color: #ffffff;
+            text-decoration: none;
+            padding: 16px 35px;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: 0 4px 0 #d49f2c;
+            margin-top: 10px;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+        .action-btn-brown:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #d49f2c;
+            filter: brightness(1.05);
+        }
+
+        /* VOTE SEKCE STYLY */
+        .vote-main-container {
+            background-color: #1f1f27;
+            padding: 60px 20px;
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+        }
+
+        .vote-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .vote-header-text {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .vote-primary-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #f0b638;
+            margin: 0 0 10px 0;
+        }
+
+        .vote-subtitle {
+            color: #8c92ac;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .vote-configurator-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            width: 100%;
+            display: flex;
+            gap: 40px;
+            padding: 30px;
+            box-sizing: border-box;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            align-items: center;
+        }
+
+        .vote-visual-side {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-height: 250px;
+            overflow: hidden;
+        }
+
+        .vote-card-preview {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vote-preview-img {
+            max-width: 100%;
+            max-height: 230px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .vote-form-side {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .configurator-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0 0 20px 0;
+            color: #ffffff;
+        }
+
+        .vote-coming-soon-box {
+            background: linear-gradient(135deg, rgba(240, 182, 56, 0.15) 0%, rgba(240, 182, 56, 0.05) 100%);
+            border: 2px dashed rgba(240, 182, 56, 0.4);
+            border-radius: 16px;
+            padding: 35px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .vote-coming-soon-icon {
+            font-size: 2.5rem;
+            color: #f0b638;
+        }
+
+        .vote-coming-soon-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #f0b638;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .vote-coming-soon-text {
+            color: #b5b9c4;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .vote-divider-text {
+            margin: 40px 0 30px 0;
+            color: #8c92ac;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .vote-benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            box-sizing: border-box;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            color: #ffffff;
+        }
+
+        .benefit-desc {
+            color: #8c92ac;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .highlight-ip { 
+            color: #f0b638; 
+            font-weight: 700; 
+            background: rgba(240, 182, 56, 0.1); 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+        }
+
+        /* RESPONSIVITA */
+        @media (max-width: 900px) {
+            .main-row {
+                flex-direction: column;
+                gap: 35px;
+            }
+            .text-side {
+                align-items: center;
+                text-align: center;
+            }
+            .intro-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-menu { gap: 12px; }
+            .nav-item { font-size: 0.85rem; }
+            .nav-btn-shop { padding: 8px 16px; font-size: 0.85rem; }
+            .hero-logo { width: 290px; }
+            .hero-play-btn { font-size: 1.2rem; padding: 14px 35px; }
+            .vote-configurator-box { flex-direction: column; padding: 20px; }
+            .vote-benefits-grid { grid-template-columns: 1fr; }
+            .vote-primary-title { font-size: 1.8rem; }
+            .vote-visual-side { max-height: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar-header">
+    <div class="navbar-container">
+        <div class="navbar-logo">
+            <a href="#" onclick="scrollToSection(event, 'hero-section')">
+                <img src="https://github.com/user-attachments/assets/a9ccd4a1-d413-4bf6-add4-5685f5153ea8" alt="Majnuj Logo" style="height: 50px; width: auto; border-radius: 8px;">
+            </a>
+        </div>
+
+        <nav class="navbar-menu">
+           <a href="#" class="nav-item">Domů</a>
+           <a href="wiki" class="nav-item">Wiki</a>
+           <a href="https://discord.com/invite/n7PsVuE2Pu" target="_blank" class="nav-item">Discord</a>
+           <a href="pravidla" class="nav-item">Pravidla</a>
+           <a href="tym" class="nav-item">Tým</a>
+        </nav>
+
+        <div class="navbar-action">
+            <a href="#" onclick="scrollToSection(event, 'obchod-section')" class="nav-btn-shop">Obchod</a>
+        </div>
+    </div>
+</header>
+
+<section id="hero-section" class="hero-section">
+    <div class="hero-content">
+        <div class="hero-logo-container">
+            <img src="https://github.com/user-attachments/assets/a9ccd4a1-d413-4bf6-add4-5685f5153ea8" alt="Majnuj Logo" class="hero-logo">
+        </div>
+
+        <a href="jak-se-pripojit" class="hero-play-btn">CHCI JÍT HRÁT!</a>
+
+        <div class="hero-ip-box" id="ip-copy-button" onclick="copyIpAddress()">
+            <i class="fa-solid fa-copy"></i>
+            <span id="ip-text">MAJNUJ.EU</span>
+        </div>
+    </div>
+
+    <div class="hero-wave">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V60.26C1122.4,56.24,1053.31,110.59,985.66,92.83Z" class="wave-fill"></path>
+        </svg>
+    </div>
+</section>
+
+<section class="welcome-section">
+    <div class="welcome-container">
+        <div class="main-row">
+            <div class="video-side">
+                <div class="video-responsive-wrapper">
+                    <iframe 
+                        src="https://www.youtube-nocookie.com/embed/mSNHL1A054A?rel=0&modestbranding=1" 
+                        title="Tohle je Minecraft Server Majnuj.eu" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            
+            <div class="text-side">
+                <h1 class="intro-title">Vítej na Majnuj</h1>
+                
+                <div class="intro-content">
+                    <p class="intro-perex">
+                        Vítej na Minecraft serveru Majnuj.eu! Nabízíme skvělou komunitu a jedinečný herní zážitek pro všechny milovníky Minecraftu.
+                    </p>
+                    <p class="intro-perex">
+                        Náš server je zaměřen na Survival, Skyblock, Oneblock a akční PvP minihry. Připoj se k nám a užij si hru naplno!
+                    </p>
+                </div>
+                
+                <a href="jak-se-pripojit" class="action-btn-brown">Chci se přidat!</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="vote-section" class="vote-main-container">
+    <div class="vote-wrapper">
+        <div class="vote-header-text">
+            <h2 class="vote-primary-title">Hlasem podpoříš sebe i server</h2>
+            <p class="vote-subtitle">Hlasuj pro náš server a získej skvělé odměny přímo ve hře.</p>
+        </div>
+
+        <div class="vote-configurator-box">
+            <div class="vote-visual-side">
+                <div class="vote-card-preview">
+                    <img src="https://github.com/user-attachments/assets/15eccf74-fe02-48a3-acdf-f2f68567f659" alt="Hlasování" class="vote-preview-img"/>
+                </div>
+            </div>
+            
+            <div class="vote-form-side">
+                <h3 class="configurator-title">Hlasovací portály</h3>
+                
+                <div class="vote-coming-soon-box">
+                    <i class="fa-solid fa-clock vote-coming-soon-icon"></i>
+                    <h4 class="vote-coming-soon-title">JIŽ BRZY</h4>
+                    <p class="vote-coming-soon-text">Hlasování pro náš server pro vás intenzivně připravujeme!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="vote-divider-text">↓ Výhody serveru ↓</div>
+
+        <div class="vote-benefits-grid">
+            <div class="benefit-card">
+                <h3 class="benefit-title" style="color: #f0b638;">🏆 Odměny za hlasování</h3>
+                <p class="benefit-desc">
+                    Po spuštění hlasování budeš moci za každý odeslaný hlas získat hodnotné odměny přímo ve hře, které ti pomohou v tvém herním postupu.
+                </p>
+            </div>
+
+            <div class="benefit-card">
+                <h3 class="benefit-title">Vote Shop & Stupňovaný VotePass</h3>
+                <p class="benefit-desc" style="margin-bottom: 12px;">
+                    Za každý hlas získáš <strong>Hlasovací bod</strong>, který můžeš utratit v prémiovém obchodě přímo ve hře příkazem <span class="highlight-ip" style="font-size: 0.85rem;">/voteshop</span> za epické věci.
+                </p>
+                <p class="benefit-desc">
+                    Zároveň ti každý hlas dává progres do <strong>měsíčního VotePassu</strong>. Čím víc hlasuješ, tím lepší odměny si v této progresivní linii odemkneš!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function scrollToSection(event, sectionId) {
+    event.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        window.location.href = 'index.html#' + sectionId;
+    }
+}
+
+function copyIpAddress() {
+    const ipText = "majnuj.eu";
+    navigator.clipboard.writeText(ipText).then(() => {
+        const textElement = document.getElementById("ip-text");
+        const originalText = textElement.textContent;
+        
+        textElement.textContent = "IP ZKOPÍROVÁNA!";
+        setTimeout(() => {
+            textElement.textContent = originalText;
+        }, 2000);
+    }).catch(err => {
+        console.error("Chyba při kopírování: ", err);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll("section[id]");
+    const navItems = document.querySelectorAll(".navbar-menu .nav-item, .nav-btn-shop");
+
+    window.addEventListener("scroll", () => {
+        let currentSectionId = "";
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            if (window.scrollY >= sectionTop) {
+                currentSectionId = section.getAttribute("id");
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove("active");
+            if (item.getAttribute("href") === `#${currentSectionId}`) {
+                item.classList.add("active");
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
