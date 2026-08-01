@@ -16,7 +16,7 @@
             padding: 0;
             width: 100%;
             overflow-x: hidden;
-            background-color: #121318;
+            background-color: #0f172a;
             font-family: 'Montserrat', sans-serif;
             color: #ffffff;
             scroll-behavior: smooth;
@@ -29,7 +29,7 @@
             left: 0;
             right: 0;
             height: 80px;
-            background-color: #181920;
+            background-color: #1e293b;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -53,7 +53,7 @@
         }
 
         .nav-item {
-            color: #b5b9c4;
+            color: #94a3b8;
             text-decoration: none;
             font-size: 1rem;
             font-weight: 600;
@@ -61,7 +61,7 @@
         }
 
         .nav-item:hover, .nav-item.active {
-            color: #ffffff;
+            color: #38bdf8;
         }
 
         .navbar-logo-img img {
@@ -73,7 +73,7 @@
 
         /* HERO SEKCE */
         .hero-section {
-            background: linear-gradient(rgba(18, 19, 24, 0.65), rgba(18, 19, 24, 0.95)), 
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.95)), 
                         url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
             background-size: cover;
             min-height: 85vh;
@@ -93,6 +93,7 @@
             gap: 20px;
         }
 
+        /* LOGO UPROSTŘED HERO SEKCE */
         .hero-logo-main {
             max-width: 80%;
             width: 320px;
@@ -100,24 +101,16 @@
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
         }
 
-        .hero-title {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 3.5rem;
-            color: #ff3e3e;
-            margin: 0;
-            text-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-
         .hero-subtitle {
             font-size: 1.2rem;
-            color: #b5b9c4;
+            color: #94a3b8;
             margin: 0;
             max-width: 600px;
         }
 
         .hero-ip-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px dashed rgba(255, 62, 62, 0.5);
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px dashed #38bdf8;
             padding: 12px 30px;
             border-radius: 30px;
             color: #ffffff;
@@ -131,8 +124,8 @@
         }
 
         .hero-ip-box:hover {
-            background: rgba(255, 62, 62, 0.1);
-            border-color: #ff3e3e;
+            background: rgba(56, 189, 248, 0.2);
+            border-color: #38bdf8;
             transform: scale(1.05);
         }
 
@@ -145,7 +138,7 @@
 
         .section-title {
             font-size: 2.2rem;
-            color: #ff3e3e;
+            color: #38bdf8;
             text-align: center;
             margin-bottom: 15px;
             font-weight: 800;
@@ -153,7 +146,7 @@
 
         .section-subtitle {
             text-align: center;
-            color: #8c92ac;
+            color: #64748b;
             margin-bottom: 50px;
         }
 
@@ -164,7 +157,7 @@
         }
 
         .info-card {
-            background: #181920;
+            background: #1e293b;
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             padding: 30px;
@@ -173,7 +166,7 @@
 
         .info-card i {
             font-size: 2.5rem;
-            color: #ff3e3e;
+            color: #38bdf8;
             margin-bottom: 20px;
         }
 
@@ -183,7 +176,7 @@
         }
 
         .info-card p {
-            color: #8c92ac;
+            color: #94a3b8;
             line-height: 1.6;
             margin: 0;
         }
@@ -196,7 +189,7 @@
         }
 
         .game-card {
-            background: #181920;
+            background: #1e293b;
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -206,6 +199,7 @@
 
         .game-card:hover {
             transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
         }
 
         .game-body {
@@ -214,7 +208,7 @@
 
         .game-body i {
             font-size: 2.5rem;
-            color: #ff3e3e;
+            color: #38bdf8;
             margin-bottom: 15px;
         }
 
@@ -225,7 +219,7 @@
         }
 
         .game-body p {
-            color: #8c92ac;
+            color: #94a3b8;
             font-size: 0.95rem;
             margin: 0;
             line-height: 1.5;
@@ -233,8 +227,8 @@
 
         /* HLASOVÁNÍ (JIŽ BRZY) */
         .vote-box {
-            background: linear-gradient(135deg, rgba(255, 62, 62, 0.1) 0%, rgba(255, 62, 62, 0.02) 100%);
-            border: 2px dashed rgba(255, 62, 62, 0.3);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(56, 189, 248, 0.02) 100%);
+            border: 2px dashed rgba(56, 189, 248, 0.4);
             border-radius: 20px;
             padding: 50px 20px;
             text-align: center;
@@ -242,7 +236,7 @@
 
         .vote-badge {
             display: inline-block;
-            background: #ff3e3e;
+            background: #2563eb;
             color: #fff;
             font-weight: 800;
             padding: 8px 20px;
@@ -254,11 +248,11 @@
 
         /* FOOTER */
         footer {
-            background: #0d0e12;
+            background: #090d16;
             padding: 30px 20px;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #8c92ac;
+            color: #64748b;
             font-size: 0.9rem;
         }
 
@@ -275,19 +269,18 @@
            <a href="index.html" class="nav-item active">Domů</a>
            <a href="pravidla.html" class="nav-item">Pravidla</a>
            <a href="team.html" class="nav-item">Admin Tým</a>
-           <a href="https://discord.gg/" target="_blank" class="nav-item">Discord</a>
+           <a href="https://discord.gg/a6HTER5WP" target="_blank" class="nav-item">Discord</a>
         </nav>
 
         <a href="index.html" class="navbar-logo-img">
-            <img src="https://github.com/user-attachments/assets/a9ccd4a1-d413-4bf6-add4-5685f5153ea8" alt="MAF Games Logo">
+            <img src="ADRESA_TVEHO_LOGA" alt="MAF Games Logo">
         </a>
     </div>
 </header>
 
 <section class="hero-section">
     <div class="hero-content">
-        <img src="https://github.com/user-attachments/assets/a9ccd4a1-d413-4bf6-add4-5685f5153ea8" alt="MAF Games Logo" class="hero-logo-main">
-        <h1 class="hero-title">MAF GAMES</h1>
+        <img src="ADRESA_TVEHO_LOGA" alt="MAF Games Logo" class="hero-logo-main">
         <p class="hero-subtitle">Vítej na komunitním Minecraft serveru! Užij si skvělý zážitek a připoj se ještě dnes.</p>
         <div class="hero-ip-box" onclick="navigator.clipboard.writeText('mc.mafgames.cz'); alert('IP adresa mc.mafgames.cz byla zkopírována!');">
             <i class="fa-solid fa-copy"></i>
@@ -323,7 +316,7 @@
             <div class="game-body">
                 <i class="fa-solid fa-cubes"></i>
                 <h3>SMP</h3>
-                <p>Survival Multiplayer s přátelskou komunitou, ekonomikou a vlastními projekty.</p>
+                <p>Anarchy / Free-for-All Survival bez pravidel pro PvP a griefing. Vše na vlastní nebezpečí!</p>
             </div>
         </div>
         <div class="game-card">
@@ -337,7 +330,7 @@
             <div class="game-body">
                 <i class="fa-solid fa-calendar-star"></i>
                 <h3>Eventy</h3>
-                <p>Speciální mini-hry a pravidelné turnaje, kde můžeš změřit síly s ostatními a vyhrát věcné ceny.</p>
+                <p>Speciální mini-hry a pravidelné turnaje, kde můžeš změřit síly s ostatními.</p>
             </div>
         </div>
     </div>
@@ -347,7 +340,7 @@
     <h2 class="section-title">HLASOVÁNÍ</h2>
     <div class="vote-box">
         <div class="vote-badge">JIŽ BRZY</div>
-        <p style="color: #b5b9c4; margin: 0;">Hlasování pro projekt MAF Games momentálně připravujeme.</p>
+        <p style="color: #94a3b8; margin: 0;">Hlasování pro projekt MAF Games momentálně připravujeme.</p>
     </div>
 </section>
 
