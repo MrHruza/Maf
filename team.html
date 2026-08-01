@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>MAF Games | Admin Tým</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -34,10 +34,11 @@
             display: flex; align-items: center; justify-content: space-between;
         }
 
-        .navbar-logo { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: #ff3e3e; text-decoration: none; font-weight: 700; }
         .navbar-menu { display: flex; gap: 25px; }
         .nav-item { color: #b5b9c4; text-decoration: none; font-weight: 600; }
         .nav-item.active, .nav-item:hover { color: #fff; }
+
+        .navbar-logo-img img { height: 55px; width: auto; border-radius: 8px; }
 
         .container {
             max-width: 1100px;
@@ -86,7 +87,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* BARVY PRO ROLE */
+        /* BARVY ROZLIŠUJÍCÍ TÝM */
         .role-owner { background: rgba(255, 62, 62, 0.2); color: #ff3e3e; border: 1px solid #ff3e3e; }
         .role-admin { background: rgba(230, 126, 34, 0.2); color: #e67e22; border: 1px solid #e67e22; }
         .role-mod { background: rgba(155, 89, 182, 0.2); color: #9b59b6; border: 1px solid #9b59b6; }
@@ -99,13 +100,15 @@
 
 <header class="navbar-header">
     <div class="navbar-container">
-        <a href="index.html" class="navbar-logo"><i class="fa-solid fa-gamepad"></i> MAF GAMES</a>
         <nav class="navbar-menu">
            <a href="index.html" class="nav-item">Domů</a>
            <a href="pravidla.html" class="nav-item">Pravidla</a>
            <a href="team.html" class="nav-item active">Admin Tým</a>
            <a href="https://discord.gg/" target="_blank" class="nav-item">Discord</a>
         </nav>
+        <a href="index.html" class="navbar-logo-img">
+            <img src="https://github.com/user-attachments/assets/a9ccd4a1-d413-4bf6-add4-5685f5153ea8" alt="MAF Games Logo">
+        </a>
     </div>
 </header>
 
@@ -129,13 +132,13 @@
         <div class="team-card">
             <img src="https://mc-heads.net/avatar/Notch/90" class="team-avatar" alt="Avatar">
             <div class="team-name">NickModa</div>
-            <span class="team-role role-mod">Moderátor</span>
+            <span class="team-role role-mod">Mod Tým</span>
         </div>
 
         <div class="team-card">
             <img src="https://mc-heads.net/avatar/Jeb_/90" class="team-avatar" alt="Avatar">
             <div class="team-name">NickHelpera</div>
-            <span class="team-role role-helper">Helper</span>
+            <span class="team-role role-helper">Helper Tým</span>
         </div>
     </div>
 </div>
