@@ -46,17 +46,6 @@
             justify-content: space-between;
         }
 
-        .navbar-logo {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.8rem;
-            color: #ff3e3e;
-            text-decoration: none;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
         .navbar-menu {
             display: flex;
             align-items: center;
@@ -75,26 +64,16 @@
             color: #ffffff;
         }
 
-        .nav-btn-shop {
-            background-color: #ff3e3e;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 800;
-            padding: 12px 24px;
-            border-radius: 10px;
-            text-transform: uppercase;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-
-        .nav-btn-shop:hover {
-            background-color: #e03232;
-            transform: scale(1.03);
+        .navbar-logo-img img {
+            height: 55px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
         }
 
         /* HERO SEKCE */
         .hero-section {
-            background: linear-gradient(rgba(18, 19, 24, 0.7), rgba(18, 19, 24, 1)), 
+            background: linear-gradient(rgba(18, 19, 24, 0.65), rgba(18, 19, 24, 0.95)), 
                         url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
             background-size: cover;
             min-height: 85vh;
@@ -114,9 +93,16 @@
             gap: 20px;
         }
 
+        .hero-logo-main {
+            max-width: 80%;
+            width: 320px;
+            height: auto;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+        }
+
         .hero-title {
             font-family: 'Fredoka', sans-serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: #ff3e3e;
             margin: 0;
             text-shadow: 0 10px 20px rgba(0,0,0,0.5);
@@ -202,19 +188,20 @@
             margin: 0;
         }
 
-        /* UKÁZKA MINIHER */
+        /* VÝBĚR REŽIMŮ */
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .game-card {
             background: #181920;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform 0.2s ease;
+            text-align: center;
         }
 
         .game-card:hover {
@@ -222,17 +209,24 @@
         }
 
         .game-body {
-            padding: 20px;
+            padding: 30px 20px;
+        }
+
+        .game-body i {
+            font-size: 2.5rem;
+            color: #ff3e3e;
+            margin-bottom: 15px;
         }
 
         .game-body h3 {
             margin: 0 0 10px 0;
             color: #ffffff;
+            font-size: 1.4rem;
         }
 
         .game-body p {
             color: #8c92ac;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin: 0;
             line-height: 1.5;
         }
@@ -277,21 +271,22 @@
 
 <header class="navbar-header">
     <div class="navbar-container">
-        <a href="index.html" class="navbar-logo">
-            <i class="fa-solid fa-gamepad"></i> MAF GAMES
-        </a>
         <nav class="navbar-menu">
            <a href="index.html" class="nav-item active">Domů</a>
            <a href="pravidla.html" class="nav-item">Pravidla</a>
            <a href="team.html" class="nav-item">Admin Tým</a>
            <a href="https://discord.gg/" target="_blank" class="nav-item">Discord</a>
         </nav>
-        <a href="#" class="nav-btn-shop">Obchod</a>
+
+        <a href="index.html" class="navbar-logo-img">
+            <img src="https://github.com/user-attachments/assets/a9ccd4a1-d413-4bf6-add4-5685f5153ea8" alt="MAF Games Logo">
+        </a>
     </div>
 </header>
 
 <section class="hero-section">
     <div class="hero-content">
+        <img src="https://github.com/user-attachments/assets/a9ccd4a1-d413-4bf6-add4-5685f5153ea8" alt="MAF Games Logo" class="hero-logo-main">
         <h1 class="hero-title">MAF GAMES</h1>
         <p class="hero-subtitle">Vítej na komunitním Minecraft serveru! Užij si skvělý zážitek a připoj se ještě dnes.</p>
         <div class="hero-ip-box" onclick="navigator.clipboard.writeText('mc.mafgames.cz'); alert('IP adresa mc.mafgames.cz byla zkopírována!');">
@@ -307,11 +302,6 @@
     
     <div class="info-grid">
         <div class="info-card">
-            <i class="fa-solid fa-server"></i>
-            <h3>Kvalitní zázemí</h3>
-            <p>Náš server běží na výkonném hardwaru bez jakýchkoliv lagů pro maximální plynulost tvé hry.</p>
-        </div>
-        <div class="info-card">
             <i class="fa-solid fa-users"></i>
             <h3>Skvělá Komunita</h3>
             <p>Přátelští hráči a aktivní tým, který ti vždy rád pomůže s jakýmkoliv dotazem.</p>
@@ -319,38 +309,35 @@
         <div class="info-card">
             <i class="fa-solid fa-trophy"></i>
             <h3>Pravidelné Eventy</h3>
-            <p>Každý týden pořádáme soutěže o unikátní odměny a VIP přímo ve hře.</p>
+            <p>Každý týden pořádáme soutěže o unikátní odměny a výhody přímo ve hře.</p>
         </div>
     </div>
 </section>
 
 <section class="section-container" style="padding-top: 0;">
-    <h2 class="section-title">NÁŠ VÝBĚR MINIHER</h2>
+    <h2 class="section-title">HERNÍ REŽIMY</h2>
     <p class="section-subtitle">Co si u nás můžeš zahrát?</p>
 
     <div class="games-grid">
         <div class="game-card">
             <div class="game-body">
+                <i class="fa-solid fa-cubes"></i>
+                <h3>SMP</h3>
+                <p>Survival Multiplayer s přátelskou komunitou, ekonomikou a vlastními projekty.</p>
+            </div>
+        </div>
+        <div class="game-card">
+            <div class="game-body">
+                <i class="fa-solid fa-tree"></i>
                 <h3>Survival</h3>
-                <p>Klasický přežití doplněné o ekonomiku, rezidence, příkazy a speciální itemy.</p>
+                <p>Klasické přežití obohacené o rezidence, příkazy a speciální předměty.</p>
             </div>
         </div>
         <div class="game-card">
             <div class="game-body">
-                <h3>Skyblock</h3>
-                <p>Postav si svůj vlastní ostrov na obloze a splň všechny výzvy.</p>
-            </div>
-        </div>
-        <div class="game-card">
-            <div class="game-body">
-                <h3>BedWars</h3>
-                <p>Akční PvP minihra, kde je tvým cílem zničit postele nepřátelským týmům.</p>
-            </div>
-        </div>
-        <div class="game-card">
-            <div class="game-body">
-                <h3>OneBlock</h3>
-                <p>Začínáš na jediném bloku pod nohama. Těž ho, upgraduj ho a vybuduj svět!</p>
+                <i class="fa-solid fa-calendar-star"></i>
+                <h3>Eventy</h3>
+                <p>Speciální mini-hry a pravidelné turnaje, kde můžeš změřit síly s ostatními a vyhrát věcné ceny.</p>
             </div>
         </div>
     </div>
@@ -360,7 +347,7 @@
     <h2 class="section-title">HLASOVÁNÍ</h2>
     <div class="vote-box">
         <div class="vote-badge">JIŽ BRZY</div>
-        <p style="color: #b5b9c4; margin: 0;">Hlasování pro projekt MAF Games momentálně připravujeme. Spolu s ním spustíme i VoteShop!</p>
+        <p style="color: #b5b9c4; margin: 0;">Hlasování pro projekt MAF Games momentálně připravujeme.</p>
     </div>
 </section>
 
