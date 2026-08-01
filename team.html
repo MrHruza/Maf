@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Majnuj | Náš Tým</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>MAF Games | Admin Tým</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fredoka:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         body {
             margin: 0;
-            background-color: #1f1f27;
+            background-color: #121318;
             font-family: 'Montserrat', sans-serif;
             color: #ffffff;
             padding-top: 100px;
@@ -20,136 +20,129 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             height: 80px;
-            background-color: #1f1f27;
+            background-color: #181920;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             z-index: 9999;
             padding: 0 30px;
         }
 
         .navbar-container {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            width: 100%; max-width: 1200px;
+            display: flex; align-items: center; justify-content: space-between;
         }
 
-        .navbar-logo img { height: 48px; }
+        .navbar-logo { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: #ff3e3e; text-decoration: none; font-weight: 700; }
         .navbar-menu { display: flex; gap: 25px; }
         .nav-item { color: #b5b9c4; text-decoration: none; font-weight: 600; }
         .nav-item.active, .nav-item:hover { color: #fff; }
 
-        .team-container {
+        .container {
             max-width: 1100px;
             margin: 40px auto;
-            padding: 0 20px;
+            padding: 0 20px 80px 20px;
             text-align: center;
         }
 
-        .page-title {
-            color: #f0b638;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
+        .page-title { color: #ff3e3e; font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
+        .page-desc { color: #8c92ac; margin-bottom: 50px; }
 
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 25px;
-            margin-top: 40px;
         }
 
         .team-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #181920;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            padding: 25px 15px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             transition: transform 0.2s ease;
         }
 
-        .team-card:hover {
-            transform: translateY(-5px);
-        }
+        .team-card:hover { transform: translateY(-5px); }
 
         .team-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 12px;
+            width: 90px;
+            height: 90px;
+            border-radius: 16px;
             margin-bottom: 15px;
         }
 
-        .team-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin: 5px 0;
-        }
+        .team-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
 
         .team-role {
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 4px 12px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 6px 14px;
             border-radius: 20px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .role-owner { background: rgba(240, 182, 56, 0.2); color: #f0b638; }
-        .role-admin { background: rgba(235, 77, 75, 0.2); color: #eb4d4b; }
-        .role-dev { background: rgba(104, 109, 224, 0.2); color: #686de0; }
-        .role-builder { background: rgba(72, 219, 251, 0.2); color: #48dbfb; }
+        /* BARVY PRO ROLE */
+        .role-owner { background: rgba(255, 62, 62, 0.2); color: #ff3e3e; border: 1px solid #ff3e3e; }
+        .role-admin { background: rgba(230, 126, 34, 0.2); color: #e67e22; border: 1px solid #e67e22; }
+        .role-mod { background: rgba(155, 89, 182, 0.2); color: #9b59b6; border: 1px solid #9b59b6; }
+        .role-helper { background: rgba(46, 204, 113, 0.2); color: #2ecc71; border: 1px solid #2ecc71; }
+
+        footer { background: #0d0e12; padding: 30px 20px; text-align: center; color: #8c92ac; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
 <header class="navbar-header">
     <div class="navbar-container">
-        <a href="index.html" class="navbar-logo">
-            <img src="https://github.com/user-attachments/assets/a9ccd4a1-d413-4bf6-add4-5685f5153ea8" alt="Majnuj Logo">
-        </a>
+        <a href="index.html" class="navbar-logo"><i class="fa-solid fa-gamepad"></i> MAF GAMES</a>
         <nav class="navbar-menu">
            <a href="index.html" class="nav-item">Domů</a>
            <a href="pravidla.html" class="nav-item">Pravidla</a>
-           <a href="team.html" class="nav-item active">Tým</a>
-           <a href="https://discord.com/invite/n7PsVuE2Pu" target="_blank" class="nav-item">Discord</a>
+           <a href="team.html" class="nav-item active">Admin Tým</a>
+           <a href="https://discord.gg/" target="_blank" class="nav-item">Discord</a>
         </nav>
     </div>
 </header>
 
-<div class="team-container">
-    <h1 class="page-title">Náš Tým</h1>
-    <p style="color: #8c92ac;">Lidé, kteří se starají o chod celého serveru Majnuj.eu</p>
+<div class="container">
+    <h1 class="page-title">ADMIN TÝM</h1>
+    <p class="page-desc">Lidé, kteří se starají o plynulý chod serveru a vaši spokojenost.</p>
 
     <div class="team-grid">
         <div class="team-card">
-            <img src="https://mc-heads.net/avatar/Mravec/100" class="team-avatar" alt="Avatar">
-            <div class="team-name">Majitel / Vedoucí</div>
-            <span class="team-role role-owner">Owner</span>
+            <img src="https://mc-heads.net/avatar/Steve/90" class="team-avatar" alt="Avatar">
+            <div class="team-name">NickMajitele</div>
+            <span class="team-role role-owner">Majitel</span>
         </div>
 
         <div class="team-card">
-            <img src="https://mc-heads.net/avatar/Steve/100" class="team-avatar" alt="Avatar">
-            <div class="team-name">Admin Name</div>
+            <img src="https://mc-heads.net/avatar/Alex/90" class="team-avatar" alt="Avatar">
+            <div class="team-name">NickAdmina</div>
             <span class="team-role role-admin">Admin</span>
         </div>
 
         <div class="team-card">
-            <img src="https://mc-heads.net/avatar/Alex/100" class="team-avatar" alt="Avatar">
-            <div class="team-name">Developer Name</div>
-            <span class="team-role role-dev">Developer</span>
+            <img src="https://mc-heads.net/avatar/Notch/90" class="team-avatar" alt="Avatar">
+            <div class="team-name">NickModa</div>
+            <span class="team-role role-mod">Moderátor</span>
         </div>
 
         <div class="team-card">
-            <img src="https://mc-heads.net/avatar/Notch/100" class="team-avatar" alt="Avatar">
-            <div class="team-name">Builder Name</div>
-            <span class="team-role role-builder">Builder</span>
+            <img src="https://mc-heads.net/avatar/Jeb_/90" class="team-avatar" alt="Avatar">
+            <div class="team-name">NickHelpera</div>
+            <span class="team-role role-helper">Helper</span>
         </div>
     </div>
 </div>
+
+<footer>
+    <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>.</p>
+</footer>
 
 </body>
 </html>
