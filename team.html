@@ -16,6 +16,7 @@
             padding-top: 100px;
         }
 
+        /* HORNÍ LIŠTA (NAVBAR) */
         .navbar-header {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -40,6 +41,7 @@
 
         .navbar-logo-img img { height: 55px; width: auto; border-radius: 8px; }
 
+        /* HLAVNÍ OBSAH */
         .container {
             max-width: 1100px;
             margin: 40px auto;
@@ -50,10 +52,12 @@
         .page-title { color: #38bdf8; font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
         .page-desc { color: #64748b; margin-bottom: 50px; }
 
+        /* MŘÍŽKA TÝMU */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 25px;
+            align-items: stretch;
         }
 
         .team-card {
@@ -64,10 +68,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             transition: transform 0.2s ease;
         }
 
-        .team-card:hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.3); }
+        .team-card:hover { 
+            transform: translateY(-5px); 
+            border-color: rgba(56, 189, 248, 0.3); 
+        }
 
         .team-avatar {
             width: 90px;
@@ -87,13 +95,20 @@
             letter-spacing: 0.5px;
         }
 
-        /* BARVY ROZLIŠUJÍCÍ TÝM (MODRÉ ODSTÍNY) */
+        /* BARVY ROZLIŠUJÍCÍ TÝM */
         .role-owner { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8; }
         .role-admin { background: rgba(37, 99, 235, 0.2); color: #60a5fa; border: 1px solid #60a5fa; }
         .role-mod { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid #c084fc; }
         .role-helper { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #4ade80; }
 
-        footer { background: #090d16; padding: 30px 20px; text-align: center; color: #64748b; font-size: 0.9rem; }
+        /* FOOTER */
+        footer { 
+            background: #090d16; 
+            padding: 30px 20px; 
+            text-align: center; 
+            color: #64748b; 
+            font-size: 0.9rem; 
+        }
     </style>
 </head>
 <body>
@@ -123,7 +138,6 @@
             <span class="team-role role-owner">Majitel</span>
         </div>
 
-    <div class="team-grid">
         <div class="team-card">
             <img src="https://mc-heads.net/avatar/Darex/90" class="team-avatar" alt="Avatar">
             <div class="team-name">Darex</div>
