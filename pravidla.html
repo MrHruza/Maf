@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Majnuj | Pravidla</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>MAF Games | Pravidla</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         body {
             margin: 0;
-            background-color: #1f1f27;
+            background-color: #121318;
             font-family: 'Montserrat', sans-serif;
             color: #ffffff;
             padding-top: 100px;
@@ -19,109 +20,97 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             height: 80px;
-            background-color: #1f1f27;
+            background-color: #181920;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             z-index: 9999;
             padding: 0 30px;
         }
 
         .navbar-container {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            width: 100%; max-width: 1200px;
+            display: flex; align-items: center; justify-content: space-between;
         }
 
-        .navbar-logo img { height: 48px; }
+        .navbar-logo { font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: #ff3e3e; text-decoration: none; font-weight: 700; }
         .navbar-menu { display: flex; gap: 25px; }
         .nav-item { color: #b5b9c4; text-decoration: none; font-weight: 600; }
         .nav-item.active, .nav-item:hover { color: #fff; }
 
-        .rules-container {
+        .container {
             max-width: 900px;
             margin: 40px auto;
-            padding: 0 20px;
+            padding: 0 20px 80px 20px;
         }
 
-        .page-title {
-            color: #f0b638;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        .page-title { color: #ff3e3e; font-size: 2.5rem; text-align: center; margin-bottom: 10px; font-weight: 800; }
+        .page-desc { text-align: center; color: #8c92ac; margin-bottom: 40px; }
 
-        .rule-block {
-            background: rgba(255, 255, 255, 0.02);
-            border-left: 4px solid #f0b638;
+        .rule-card {
+            background: #181920;
+            border-left: 4px solid #ff3e3e;
             border-radius: 8px;
-            padding: 20px 25px;
+            padding: 25px;
             margin-bottom: 20px;
         }
 
-        .rule-block h2 {
-            margin: 0 0 10px 0;
-            font-size: 1.3rem;
-            color: #ffffff;
-        }
+        .rule-card h2 { margin: 0 0 15px 0; font-size: 1.3rem; color: #ffffff; }
+        .rule-card ul { margin: 0; padding-left: 20px; color: #b5b9c4; line-height: 1.8; }
 
-        .rule-block ul {
-            margin: 0;
-            padding-left: 20px;
-            color: #b5b9c4;
-            line-height: 1.7;
-        }
+        footer { background: #0d0e12; padding: 30px 20px; text-align: center; color: #8c92ac; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
 <header class="navbar-header">
     <div class="navbar-container">
-        <a href="index.html" class="navbar-logo">
-            <img src="https://github.com/user-attachments/assets/a9ccd4a1-d413-4bf6-add4-5685f5153ea8" alt="Majnuj Logo">
-        </a>
+        <a href="index.html" class="navbar-logo"><i class="fa-solid fa-gamepad"></i> MAF GAMES</a>
         <nav class="navbar-menu">
            <a href="index.html" class="nav-item">Domů</a>
            <a href="pravidla.html" class="nav-item active">Pravidla</a>
-           <a href="team.html" class="nav-item">Tým</a>
-           <a href="https://discord.com/invite/n7PsVuE2Pu" target="_blank" class="nav-item">Discord</a>
+           <a href="team.html" class="nav-item">Admin Tým</a>
+           <a href="https://discord.gg/" target="_blank" class="nav-item">Discord</a>
         </nav>
     </div>
 </header>
 
-<div class="rules-container">
-    <h1 class="page-title">Pravidla Serveru</h1>
+<div class="container">
+    <h1 class="page-title">PRAVIDLA SERVERU</h1>
+    <p class="page-desc">Neznalost pravidel neomlouvá. Nezkušení hráči i veteráni jsou povinni je dodržovat.</p>
 
-    <div class="rule-block">
-        <h2>1. Obecná pravidla</h2>
+    <div class="rule-card">
+        <h2>1. Základní ustanovení</h2>
         <ul>
-            <li>Je zakázáno používat jakékoliv cheaty, modifikace či skripty dávající výhodu nad ostatními.</li>
-            <li>Respektujte členy Admin Týmu a ostatní hráče.</li>
-            <li>Je přísně zakázáno obcházet udělité tresty (ban, mute).</li>
+            <li>Je přísně zakázáno používání cheatů, modifikací a skriptů zvýhodňujících hru (X-Ray, Fly, KillAura apod.).</li>
+            <li>Respektuj všechny členy týmu i ostatní hráče na serveru.</li>
+            <li>Je zakázáno obcházet jakékoliv udělené tresty (Bany, Muty).</li>
         </ul>
     </div>
 
-    <div class="rule-block">
+    <div class="rule-card">
         <h2>2. Pravidla Chatu</h2>
         <ul>
-            <li>Zakázáno spamovat, nadávat a propagovat jiné projekty.</li>
-            <li>Nerozšiřujte lži a nepodkládejte falešné důkazy proti hráčům.</li>
-            <li>Zákaz sdílení osobních údajů ostatních hráčů (Doxxing).</li>
+            <li>Zákaz spamu, nadměrného psaní velkých písmen (CAPS) a urážek.</li>
+            <li>Zákaz reklamy na jiné Minecraft servery nebo webové projekty.</li>
+            <li>Šíření osobních údajů jiných hráčů (Doxxing) je trestáno okamžitým trvalým banem.</li>
         </ul>
     </div>
 
-    <div class="rule-block">
-        <h2>3. Hratelnost & Ekonomika</h2>
+    <div class="rule-card">
+        <h2>3. Hra & Ekonomika</h2>
         <ul>
-            <li>Zákaz jakéhokoliv ničení cizích staveb (Griefing) na místech, kde to není povoleno.</li>
-            <li>Je zakázáno zneužívat jakékoliv chyby hry nebo serveru (Bugeusing).</li>
-            <li>Zákaz obcházení AFK systému pomocí AFK botů či makra.</li>
+            <li>Zákaz ničení cizích staveb (Griefing) mimo povolené zóny.</li>
+            <li>Je zakázáno zneužívat chyby serveru (Bugs). Jakoukoliv chybu hned nahlaste týmu.</li>
+            <li>Zákaz využívání AFK botů a auto-clickerů.</li>
         </ul>
     </div>
 </div>
+
+<footer>
+    <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>.</p>
+</footer>
 
 </body>
 </html>
