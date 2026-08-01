@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" type="image/png" href="https://github.com/user-attachments/assets/139e951f-5808-491f-9637-c25227c8115f">
-    <title>Majnuja | Hlavní stránka</title>
-   
+    <title>MAF Games | Minecraft Server</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fredoka:wght@700&display=swap" rel="stylesheet">
@@ -17,24 +16,24 @@
             padding: 0;
             width: 100%;
             overflow-x: hidden;
-            background-color: #1f1f27;
+            background-color: #121318;
             font-family: 'Montserrat', sans-serif;
             color: #ffffff;
             scroll-behavior: smooth;
         }
 
-        /* NAVBAR */
+        /* HORNÍ LIŠTA (NAVBAR) */
         .navbar-header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             height: 80px;
-            background-color: #1f1f27;
+            background-color: #181920;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             z-index: 9999;
             padding: 0 30px;
         }
@@ -47,10 +46,15 @@
             justify-content: space-between;
         }
 
-        .navbar-logo img {
-            height: 48px;
-            width: auto;
-            border-radius: 8px;
+        .navbar-logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.8rem;
+            color: #ff3e3e;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .navbar-menu {
@@ -72,27 +76,28 @@
         }
 
         .nav-btn-shop {
-            background-color: #ffcc00;
-            color: #000000;
+            background-color: #ff3e3e;
+            color: #ffffff;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 800;
-            padding: 12px 28px;
-            border-radius: 12px;
+            padding: 12px 24px;
+            border-radius: 10px;
             text-transform: uppercase;
             transition: transform 0.2s ease, background-color 0.2s ease;
         }
 
         .nav-btn-shop:hover {
-            background-color: #e6b800;
+            background-color: #e03232;
             transform: scale(1.03);
         }
 
         /* HERO SEKCE */
         .hero-section {
-            background: url('https://www.minecraft.net/content/dam/minecraftnet/archive/6581250e483233ceb023d260eef9ed6a-header.jpg') no-repeat center center;
+            background: linear-gradient(rgba(18, 19, 24, 0.7), rgba(18, 19, 24, 1)), 
+                        url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
             background-size: cover;
-            min-height: 100vh;
+            min-height: 85vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -106,104 +111,165 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 25px;
-            z-index: 2;
+            gap: 20px;
         }
 
-        .hero-logo {
-            max-width: 90%;
-            width: 750px;
-            height: auto;
-            animation: logoFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-        }
-
-        .hero-play-btn {
+        .hero-title {
             font-family: 'Fredoka', sans-serif;
-            background-color: #f0b638;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 700;
-            padding: 18px 45px;
-            border-radius: 16px;
-            box-shadow: 0 6px 0 #d49f2c, 0 12px 25px rgba(0,0,0,0.25);
-            text-transform: uppercase;
-            transition: transform 0.1s ease;
+            font-size: 4rem;
+            color: #ff3e3e;
+            margin: 0;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        .hero-play-btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.05);
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #b5b9c4;
+            margin: 0;
+            max-width: 600px;
         }
 
         .hero-ip-box {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(8px);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            padding: 10px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed rgba(255, 62, 62, 0.5);
+            padding: 12px 30px;
             border-radius: 30px;
-            color: #1e3153;
+            color: #ffffff;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 10px;
         }
 
-        /* UVÍTACÍ SEKCE */
-        .welcome-section {
-            padding: 80px 20px;
-            display: flex;
-            justify-content: center;
+        .hero-ip-box:hover {
+            background: rgba(255, 62, 62, 0.1);
+            border-color: #ff3e3e;
+            transform: scale(1.05);
         }
 
-        .welcome-container {
+        /* O SERVERU */
+        .section-container {
             max-width: 1100px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            gap: 50px;
+            margin: 0 auto;
+            padding: 80px 20px;
         }
 
-        .video-wrapper {
-            flex: 1;
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
+        .section-title {
+            font-size: 2.2rem;
+            color: #ff3e3e;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #8c92ac;
+            margin-bottom: 50px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: #181920;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 30px;
+            text-align: center;
         }
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-        }
-
-        .text-content {
-            flex: 1;
-        }
-
-        .text-content h1 {
-            color: #f0b638;
+        .info-card i {
             font-size: 2.5rem;
+            color: #ff3e3e;
             margin-bottom: 20px;
         }
 
-        .text-content p {
-            color: #b5b9c4;
-            line-height: 1.7;
-            font-size: 1rem;
+        .info-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
         }
 
-        @media (max-width: 900px) {
-            .welcome-container { flex-direction: column; }
+        .info-card p {
+            color: #8c92ac;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* UKÁZKA MINIHER */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .game-card {
+            background: #181920;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-body {
+            padding: 20px;
+        }
+
+        .game-body h3 {
+            margin: 0 0 10px 0;
+            color: #ffffff;
+        }
+
+        .game-body p {
+            color: #8c92ac;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* HLASOVÁNÍ (JIŽ BRZY) */
+        .vote-box {
+            background: linear-gradient(135deg, rgba(255, 62, 62, 0.1) 0%, rgba(255, 62, 62, 0.02) 100%);
+            border: 2px dashed rgba(255, 62, 62, 0.3);
+            border-radius: 20px;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .vote-badge {
+            display: inline-block;
+            background: #ff3e3e;
+            color: #fff;
+            font-weight: 800;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0d0e12;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #8c92ac;
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: #ffffff;
         }
     </style>
 </head>
@@ -212,41 +278,95 @@
 <header class="navbar-header">
     <div class="navbar-container">
         <a href="index.html" class="navbar-logo">
-            <img src="https://github.com/user-attachments/assets/a9ccd4a1-d413-4bf6-add4-5685f5153ea8" alt="Majnuj Logo">
+            <i class="fa-solid fa-gamepad"></i> MAF GAMES
         </a>
         <nav class="navbar-menu">
            <a href="index.html" class="nav-item active">Domů</a>
            <a href="pravidla.html" class="nav-item">Pravidla</a>
-           <a href="team.html" class="nav-item">Tým</a>
-           <a href="https://discord.com/invite/n7PsVuE2Pu" target="_blank" class="nav-item">Discord</a>
+           <a href="team.html" class="nav-item">Admin Tým</a>
+           <a href="https://discord.gg/" target="_blank" class="nav-item">Discord</a>
         </nav>
-        <a href="https://obchod.majnuj.eu" class="nav-btn-shop">Obchod</a>
+        <a href="#" class="nav-btn-shop">Obchod</a>
     </div>
 </header>
 
 <section class="hero-section">
     <div class="hero-content">
-        <img src="https://github.com/user-attachments/assets/a9ccd4a1-d413-4bf6-add4-5685f5153ea8" alt="Majnuj Logo" class="hero-logo">
-        <a href="https://discord.com/invite/n7PsVuE2Pu" class="hero-play-btn">CHCI JÍT HRÁT!</a>
-        <div class="hero-ip-box" onclick="navigator.clipboard.writeText('majnuj.eu'); alert('IP adresa byla zkopírována!');">
+        <h1 class="hero-title">MAF GAMES</h1>
+        <p class="hero-subtitle">Vítej na komunitním Minecraft serveru! Užij si skvělý zážitek a připoj se ještě dnes.</p>
+        <div class="hero-ip-box" onclick="navigator.clipboard.writeText('mc.mafgames.cz'); alert('IP adresa mc.mafgames.cz byla zkopírována!');">
             <i class="fa-solid fa-copy"></i>
-            <span>MAJNUJ.EU</span>
+            <span>mc.mafgames.cz</span>
         </div>
     </div>
 </section>
 
-<section class="welcome-section">
-    <div class="welcome-container">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube-nocookie.com/embed/mSNHL1A054A?rel=0" frameborder="0" allowfullscreen></iframe>
+<section class="section-container">
+    <h2 class="section-title">O NAŠEM SERVERU</h2>
+    <p class="section-subtitle">Proč hrát právě u nás na MAF Games?</p>
+    
+    <div class="info-grid">
+        <div class="info-card">
+            <i class="fa-solid fa-server"></i>
+            <h3>Kvalitní zázemí</h3>
+            <p>Náš server běží na výkonném hardwaru bez jakýchkoliv lagů pro maximální plynulost tvé hry.</p>
         </div>
-        <div class="text-content">
-            <h1>Vítej na Majnuj.eu!</h1>
-            <p>Jsme Minecraft server se zaměřením na kvalitní herní zážitek pro celou komunitu. Nabízíme propracovaný Survival, Skyblock, Oneblock a zábavné PvP minihry.</p>
-            <p>Připoj se k nám ještě dnes a zažij jedinečné dobrodružství!</p>
+        <div class="info-card">
+            <i class="fa-solid fa-users"></i>
+            <h3>Skvělá Komunita</h3>
+            <p>Přátelští hráči a aktivní tým, který ti vždy rád pomůže s jakýmkoliv dotazem.</p>
+        </div>
+        <div class="info-card">
+            <i class="fa-solid fa-trophy"></i>
+            <h3>Pravidelné Eventy</h3>
+            <p>Každý týden pořádáme soutěže o unikátní odměny a VIP přímo ve hře.</p>
         </div>
     </div>
 </section>
+
+<section class="section-container" style="padding-top: 0;">
+    <h2 class="section-title">NÁŠ VÝBĚR MINIHER</h2>
+    <p class="section-subtitle">Co si u nás můžeš zahrát?</p>
+
+    <div class="games-grid">
+        <div class="game-card">
+            <div class="game-body">
+                <h3>Survival</h3>
+                <p>Klasický přežití doplněné o ekonomiku, rezidence, příkazy a speciální itemy.</p>
+            </div>
+        </div>
+        <div class="game-card">
+            <div class="game-body">
+                <h3>Skyblock</h3>
+                <p>Postav si svůj vlastní ostrov na obloze a splň všechny výzvy.</p>
+            </div>
+        </div>
+        <div class="game-card">
+            <div class="game-body">
+                <h3>BedWars</h3>
+                <p>Akční PvP minihra, kde je tvým cílem zničit postele nepřátelským týmům.</p>
+            </div>
+        </div>
+        <div class="game-card">
+            <div class="game-body">
+                <h3>OneBlock</h3>
+                <p>Začínáš na jediném bloku pod nohama. Těž ho, upgraduj ho a vybuduj svět!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-container" style="padding-top: 0;">
+    <h2 class="section-title">HLASOVÁNÍ</h2>
+    <div class="vote-box">
+        <div class="vote-badge">JIŽ BRZY</div>
+        <p style="color: #b5b9c4; margin: 0;">Hlasování pro projekt MAF Games momentálně připravujeme. Spolu s ním spustíme i VoteShop!</p>
+    </div>
+</section>
+
+<footer>
+    <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>. Tento projekt není oficiálním produktem Mojang AB.</p>
+</footer>
 
 </body>
 </html>
