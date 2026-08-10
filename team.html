@@ -1,114 +1,329 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" data-theme="dark">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>MAF Games | Admin Tým</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>MAF Games | Náš tým</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fredoka:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
-        body {
+        /* --- BAREVNÉ PROMĚNNÉ A GRADIENTY --- */
+        :root[data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #0b1329 0%, #040814 100%);
+            --bg-card: rgba(30, 41, 59, 0.75);
+            --bg-card-solid: #1e293b;
+            --bg-nav: rgba(15, 23, 42, 0.9);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --footer-bg: #040814;
+        }
+
+        :root[data-theme="light"] {
+            --bg-gradient: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-solid: #ffffff;
+            --bg-nav: rgba(255, 255, 255, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-blue: #0284c7;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --footer-bg: #bfdbfe;
+        }
+
+        html, body {
             margin: 0;
-            background-color: #0f172a;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
             font-family: 'Montserrat', sans-serif;
-            color: #ffffff;
-            padding-top: 100px;
+            color: var(--text-main);
+            scroll-behavior: smooth;
+            transition: all 0.3s ease;
         }
 
         /* HORNÍ LIŠTA (NAVBAR) */
         .navbar-header {
             position: fixed;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 80px;
-            background-color: #1e293b;
+            background-color: var(--bg-nav);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             z-index: 9999;
             padding: 0 30px;
         }
 
         .navbar-container {
-            width: 100%; max-width: 1200px;
-            display: flex; align-items: center; justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .navbar-menu { display: flex; gap: 25px; }
-        .nav-item { color: #94a3b8; text-decoration: none; font-weight: 600; }
-        .nav-item.active, .nav-item:hover { color: #38bdf8; }
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
 
-        .navbar-logo-img img { height: 55px; width: auto; border-radius: 8px; }
+        .nav-item {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--accent-blue);
+        }
+
+        .nav-right-tools {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar-logo-img img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--accent-blue);
+            color: #ffffff;
+        }
 
         /* HLAVNÍ OBSAH */
         .container {
             max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px 80px 20px;
+            margin: 0 auto;
+            padding: 120px 20px 80px 20px;
             text-align: center;
         }
 
-        .page-title { color: #38bdf8; font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
-        .page-desc { color: #64748b; margin-bottom: 50px; }
+        .page-title {
+            color: var(--accent-blue);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .page-desc {
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            font-size: 1.05rem;
+        }
+
+        /* KATEGORIE TÝMU */
+        .team-category-title {
+            font-size: 1.6rem;
+            color: var(--text-main);
+            text-align: left;
+            border-bottom: 3px solid var(--accent-blue);
+            padding-bottom: 8px;
+            margin: 40px 0 25px 0;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
         /* MŘÍŽKA TÝMU */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 25px;
             align-items: stretch;
         }
 
         .team-card {
-            background: #1e293b;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 30px 20px;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 25px 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .team-card:hover { 
-            transform: translateY(-5px); 
-            border-color: rgba(56, 189, 248, 0.3); 
+            transform: translateY(-6px); 
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
-        .team-avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 16px;
+        /* CELÁ POSTAVIČKA */
+        .team-body-img {
+            height: 180px;
+            width: auto;
+            object-fit: contain;
             margin-bottom: 15px;
+            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.25));
+            transition: transform 0.2s ease;
         }
 
-        .team-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+        .team-card:hover .team-body-img {
+            transform: scale(1.05);
+        }
+
+        .team-name { 
+            font-size: 1.2rem; 
+            font-weight: 700; 
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
 
         .team-role {
             font-size: 0.8rem;
             font-weight: 800;
-            padding: 6px 14px;
+            padding: 6px 16px;
             border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        /* BARVY ROZLIŠUJÍCÍ TÝM */
+        /* ROZLIŠENÍ ROLÍ */
         .role-owner { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8; }
         .role-admin { background: rgba(37, 99, 235, 0.2); color: #60a5fa; border: 1px solid #60a5fa; }
         .role-dev { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid #c084fc; }
         .role-helper { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #4ade80; }
-        .role-eventer { background: rgba(34, 197, 94, 0.2); color: #FFFF00; border: 1px solid #FFFF00; }
+        .role-eventer { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid #facc15; }
+
+        /* VYSKAKOVACÍ PANEL ZE STRANY (REKRUTACE) */
+        .slide-widget {
+            position: fixed;
+            bottom: 30px;
+            right: -400px;
+            width: 340px;
+            background: var(--bg-card-solid);
+            border: 2px solid var(--accent-blue);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: right 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .slide-widget.show {
+            right: 30px;
+        }
+
+        .widget-close {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .widget-close:hover {
+            color: var(--text-main);
+        }
+
+        .widget-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .widget-icon {
+            font-size: 2.2rem;
+            color: var(--accent-blue);
+            flex-shrink: 0;
+        }
+
+        .widget-text h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .widget-text p {
+            margin: 4px 0 0 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .btn-widget {
+            display: block;
+            text-align: center;
+            background: #5865F2;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: background 0.2s ease;
+        }
+
+        .btn-widget:hover {
+            background: #4752c4;
+        }
 
         /* FOOTER */
         footer { 
-            background: #090d16; 
+            background: var(--footer-bg); 
             padding: 30px 20px; 
             text-align: center; 
-            color: #64748b; 
+            color: var(--text-muted); 
             font-size: 0.9rem; 
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer strong {
+            color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            .page-title { font-size: 1.8rem; }
+            .team-category-title { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -119,52 +334,81 @@
         <nav class="navbar-menu">
            <a href="index.html" class="nav-item">Domů</a>
            <a href="pravidla.html" class="nav-item">Pravidla</a>
-           <a href="team.html" class="nav-item active">Admin Tým</a>
+           <a href="team.html" class="nav-item active">Náš tým</a>
            <a href="https://discord.gg/a6HTER5WP" target="_blank" class="nav-item">Discord</a>
         </nav>
-        <a href="index.html" class="navbar-logo-img">
-            <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games Logo">
-        </a>
+
+        <div class="nav-right-tools">
+            <button id="theme-toggle" class="theme-toggle-btn" title="Přepnout režim">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <a href="index.html" class="navbar-logo-img">
+                <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games Logo">
+            </a>
+        </div>
     </div>
 </header>
 
 <div class="container">
-    <h1 class="page-title">ADMIN TÝM</h1>
-    <p class="page-desc">Lidé, kteří se starají o plynulý chod serveru a vaši spokojenost.</p>
+    <h1 class="page-title">Náš Admin Tým</h1>
+    <p class="page-desc">Lidé, kteří se starají o plynulý chod serveru, komunitu a vaši spokojenost.</p>
 
+    <h2 class="team-category-title">
+        <i class="fa-solid fa-crown"></i> Vedení Serveru
+    </h2>
     <div class="team-grid">
         <div class="team-card">
-            <img src="https://mc-heads.net/avatar/The_Mafo/90" class="team-avatar" alt="Avatar">
+            <img src="https://mc-heads.net/body/The_Mafo/180" class="team-body-img" alt="The_Mafo">
             <div class="team-name">The_Mafo</div>
             <span class="team-role role-owner">Majitel</span>
         </div>
 
         <div class="team-card">
-            <img src="https://mc-heads.net/avatar/Darex/90" class="team-avatar" alt="Avatar">
+            <img src="https://mc-heads.net/body/Darex/180" class="team-body-img" alt="Darex">
             <div class="team-name">Darex</div>
             <span class="team-role role-owner">Majitel</span>
         </div>
+    </div>
 
+    <h2 class="team-category-title">
+        <i class="fa-solid fa-shield-halved"></i> Administrátoři
+    </h2>
+    <div class="team-grid">
         <div class="team-card">
-            <img src="https://mc-heads.net/avatar/Alex/90" class="team-avatar" alt="Avatar">
+            <img src="https://mc-heads.net/body/Alex/180" class="team-body-img" alt="NickAdmina">
             <div class="team-name">NickAdmina</div>
             <span class="team-role role-admin">Admin</span>
         </div>
+    </div>
 
+    <h2 class="team-category-title">
+        <i class="fa-solid fa-code"></i> Vývojáři
+    </h2>
+    <div class="team-grid">
         <div class="team-card">
-            <img src="https://mc-heads.net/avatar/Notch/90" class="team-avatar" alt="Avatar">
+            <img src="https://mc-heads.net/body/Notch/180" class="team-body-img" alt="NickDev">
             <div class="team-name">NickDev</div>
             <span class="team-role role-dev">Dev Tým</span>
         </div>
+    </div>
 
+    <h2 class="team-category-title">
+        <i class="fa-solid fa-hands-helping"></i> Helper Tým
+    </h2>
+    <div class="team-grid">
         <div class="team-card">
-            <img src="https://mc-heads.net/avatar/Jeb_/90" class="team-avatar" alt="Avatar">
+            <img src="https://mc-heads.net/body/Jeb_/180" class="team-body-img" alt="NickHelpera">
             <div class="team-name">NickHelpera</div>
             <span class="team-role role-helper">Helper Tým</span>
         </div>
+    </div>
 
+    <h2 class="team-category-title">
+        <i class="fa-solid fa-trophy"></i> Eventeři
+    </h2>
+    <div class="team-grid">
         <div class="team-card">
-            <img src="https://mc-heads.net/avatar/Jeb_/90" class="team-avatar" alt="Avatar">
+            <img src="https://mc-heads.net/body/MHF_Steve/180" class="team-body-img" alt="NickEventer">
             <div class="team-name">NickEventer</div>
             <span class="team-role role-eventer">Eventer Tým</span>
         </div>
@@ -174,6 +418,48 @@
 <footer>
     <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>.</p>
 </footer>
+
+<div id="slide-widget" class="slide-widget">
+    <button class="widget-close" onclick="closeWidget()">&times;</button>
+    <div class="widget-content">
+        <i class="fa-solid fa-user-plus widget-icon"></i>
+        <div class="widget-text">
+            <h4>Chceš se přidat do týmu?</h4>
+            <p>Rádi uvítáme nové posily! Otevři si <strong>ticket na Discordu</strong> a pošli přihlášku.</p>
+        </div>
+    </div>
+    <a href="https://discord.gg/a6HTER5WP" target="_blank" class="btn-widget">
+        <i class="fa-brands fa-discord"></i> Vytvořit ticket na Discordu
+    </a>
+</div>
+
+<script>
+    // Přepínač světlý / tmavý režim
+    const themeBtn = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    themeBtn.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        htmlElement.setAttribute('data-theme', newTheme);
+        themeBtn.innerHTML = newTheme === 'dark' 
+            ? '<i class="fa-solid fa-moon"></i>' 
+            : '<i class="fa-solid fa-sun"></i>';
+    });
+
+    // Vysunutí panelu ze strany po 3 sekundách
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('slide-widget').classList.add('show');
+        }, 3000);
+    });
+
+    // Zavření panelu
+    function closeWidget() {
+        document.getElementById('slide-widget').classList.remove('show');
+    }
+</script>
 
 </body>
 </html>
