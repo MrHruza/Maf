@@ -1,75 +1,233 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" data-theme="dark">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>MAF Games | Pravidla</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fredoka:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
-        body {
-            margin: 0;
-            background-color: #0f172a;
-            font-family: 'Montserrat', sans-serif;
-            color: #ffffff;
-            padding-top: 100px;
+        /* --- BAREVNÉ PROMĚNNÉ A GRADIENTY --- */
+        :root[data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #0b1329 0%, #040814 100%);
+            --bg-card: rgba(30, 41, 59, 0.75);
+            --bg-card-solid: #1e293b;
+            --bg-nav: rgba(15, 23, 42, 0.9);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --footer-bg: #040814;
         }
 
+        :root[data-theme="light"] {
+            --bg-gradient: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-solid: #ffffff;
+            --bg-nav: rgba(255, 255, 255, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-blue: #0284c7;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --footer-bg: #bfdbfe;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-main);
+            scroll-behavior: smooth;
+            transition: all 0.3s ease;
+        }
+
+        /* HORNÍ LIŠTA (NAVBAR) */
         .navbar-header {
             position: fixed;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 80px;
-            background-color: #1e293b;
+            background-color: var(--bg-nav);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             z-index: 9999;
             padding: 0 30px;
         }
 
         .navbar-container {
-            width: 100%; max-width: 1200px;
-            display: flex; align-items: center; justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .navbar-menu { display: flex; gap: 25px; }
-        .nav-item { color: #94a3b8; text-decoration: none; font-weight: 600; }
-        .nav-item.active, .nav-item:hover { color: #38bdf8; }
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
 
-        .navbar-logo-img img { height: 55px; width: auto; border-radius: 8px; }
+        .nav-item {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
 
+        .nav-item:hover, .nav-item.active {
+            color: var(--accent-blue);
+        }
+
+        .nav-right-tools {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar-logo-img img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--accent-blue);
+            color: #ffffff;
+        }
+
+        /* HLAVNÍ OBSAH */
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px 80px 20px;
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 120px 20px 80px 20px;
         }
 
-        .page-title { color: #38bdf8; font-size: 2.5rem; text-align: center; margin-bottom: 10px; font-weight: 800; }
-        .page-desc { text-align: center; color: #64748b; margin-bottom: 40px; }
+        .page-title {
+            color: var(--accent-blue);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .page-desc {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            font-size: 1.05rem;
+        }
 
         .rules-section-heading {
             font-size: 1.8rem;
-            color: #ffffff;
-            border-bottom: 2px solid #2563eb;
-            padding-bottom: 10px;
-            margin: 40px 0 20px 0;
+            color: var(--text-main);
+            border-bottom: 3px solid var(--accent-blue);
+            padding-bottom: 8px;
+            margin: 50px 0 25px 0;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
+        /* KARTY PRAVIDEL */
         .rule-card {
-            background: #1e293b;
-            border-left: 4px solid #2563eb;
-            border-radius: 8px;
-            padding: 20px 25px;
-            margin-bottom: 15px;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--accent-blue);
+            border-radius: 14px;
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .rule-card h3 { margin: 0 0 10px 0; font-size: 1.1rem; color: #38bdf8; }
-        .rule-card ul { margin: 0; padding-left: 20px; color: #94a3b8; line-height: 1.7; }
-        .rule-card li { margin-bottom: 5px; }
+        .rule-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-blue);
+        }
 
-        footer { background: #090d16; padding: 30px 20px; text-align: center; color: #64748b; font-size: 0.9rem; }
+        .rule-card h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.25rem;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rule-card ul {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .rule-card li {
+            margin-bottom: 8px;
+        }
+
+        .rule-card li strong {
+            color: var(--text-main);
+        }
+
+        /* PATIČKA */
+        footer {
+            background: var(--footer-bg);
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer strong {
+            color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            .rules-section-heading {
+                font-size: 1.4rem;
+            }
+            .rule-card {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -79,23 +237,31 @@
         <nav class="navbar-menu">
            <a href="index.html" class="nav-item">Domů</a>
            <a href="pravidla.html" class="nav-item active">Pravidla</a>
-           <a href="team.html" class="nav-item">Admin Tým</a>
+           <a href="team.html" class="nav-item">Náš tým</a>
            <a href="https://discord.gg/a6HTER5WP" target="_blank" class="nav-item">Discord</a>
         </nav>
-        <a href="index.html" class="navbar-logo-img">
-            <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games Logo">
-        </a>
+
+        <div class="nav-right-tools">
+            <button id="theme-toggle" class="theme-toggle-btn" title="Přepnout režim">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <a href="index.html" class="navbar-logo-img">
+                <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games Logo">
+            </a>
+        </div>
     </div>
 </header>
 
 <div class="container">
-    <h1 class="page-title">PRAVIDLA SERVERU A DISCORDU</h1>
-    <p class="page-desc">Neznalost pravidel neomlouvá. Všichni hráči jsou povinni je dodržovat.</p>
+    <h1 class="page-title">Pravidla Serveru a Discordu</h1>
+    <p class="page-desc">Neznalost pravidiel neomlouvá. Všichni hráči a členové komunity jsou povinni je dodržovat.</p>
 
-    <h2 class="rules-section-heading">PRAVIDLA PRO SMP 2026</h2>
+    <h2 class="rules-section-heading">
+        <i class="fa-solid fa-cube"></i> PRAVIDLA PRO SMP 2026
+    </h2>
 
     <div class="rule-card">
-        <h3>I. Chování a respekt</h3>
+        <h3><i class="fa-solid fa-masks-theater"></i> I. Chování a respekt</h3>
         <ul>
             <li><strong>Anarchy / Free-for-All styl hry:</strong> Na serveru je povoleno PvP, griefování i kradení. Hráš na vlastní nebezpečí a za své věci si zodpovídáš sám.</li>
             <li><strong>Chování k hráčům:</strong> I když je hra divoká, šikana v reálném životě, extrémní rasismus, doxxing či vyhrůžky mimo hru jsou přísně zakázány.</li>
@@ -105,7 +271,7 @@
     </div>
 
     <div class="rule-card">
-        <h3>II. Boj, Stavění a Griefing</h3>
+        <h3><i class="fa-solid fa-swords"></i> II. Boj, Stavění a Griefing</h3>
         <ul>
             <li><strong>Svoboda stavění a ničení:</strong> Můžeš stavět kdekoliv na mapě. Zároveň můžeš zničit (griefnout) nebo vykrást jakoukoliv bázi, kterou najdeš.</li>
             <li><strong>Neomezené PvP:</strong> Bojovat se může kdekoliv kromě oficiálního Spawnu (pokud je nastavená safezóna). TTP, pasti i přepadávání jsou povoleny.</li>
@@ -114,7 +280,7 @@
     </div>
 
     <div class="rule-card">
-        <h3>III. Úpravy hry a Cheaty</h3>
+        <h3><i class="fa-solid fa-ban"></i> III. Úpravy hry a Cheaty</h3>
         <ul>
             <li><strong>Přísný zákaz Cheatů:</strong> Griefing je povolený, ale cheaty NE! Používání Fly, KillAury, X-Ray, Speedhacků či jiných hacked klientů znamená okamžitý trvalý ban.</li>
             <li><strong>Zákaz Využívání Chyby (Bugů):</strong> Jakékoliv zneužívání chyb hry na duplikování itemů (dupe) nebo shazování serveru je zakázáno.</li>
@@ -123,7 +289,7 @@
     </div>
 
     <div class="rule-card">
-        <h3>IV. Chat a Komunikace</h3>
+        <h3><i class="fa-solid fa-comments"></i> IV. Chat a Komunikace</h3>
         <ul>
             <li><strong>Zákaz Reklamy:</strong> Jakákoliv propagace jiných Minecraft serverů nebo cizích Discordů je zakázána.</li>
             <li><strong>Zákaz Spamu:</strong> Neposílej stejné zprávy opakovaně a nespamuj chat.</li>
@@ -131,7 +297,7 @@
     </div>
 
     <div class="rule-card">
-        <h3>V. Ekonomika a Obchodování</h3>
+        <h3><i class="fa-solid fa-coins"></i> V. Ekonomika a Obchodování</h3>
         <ul>
             <li><strong>Obchodování na vlastní riziko:</strong> Obchody mezi hráči nejsou garantovány Admin Týmem. Pokud tě někdo při obchodu podvede (scamne), je to součást hry a admini itemy nevracejí.</li>
             <li><strong>Zákaz Obcházení Systému:</strong> Jakékoliv obcházení oficiálního serverového obchodu, aukcí nebo ekonomického pluginu pomocí chyb hry je zakázáno.</li>
@@ -139,38 +305,40 @@
         </ul>
     </div>
 
-    <h2 class="rules-section-heading">PRAVIDLA PRE DISCORD 2026</h2>
+    <h2 class="rules-section-heading">
+        <i class="fa-brands fa-discord"></i> PRAVIDLA PRO DISCORD 2026
+    </h2>
 
     <div class="rule-card">
-        <h3>I. Chování a komunikace</h3>
+        <h3><i class="fa-solid fa-user-group"></i> I. Chování a komunikace</h3>
         <ul>
             <li><strong>Respektuj ostatní členy:</strong> Buď k ostatním slušný. Služby jako vulgarismy v míře, útoky na ostatní, šikana nebo nadávky nebudou tolerovány.</li>
             <li><strong>Nulová tolerance diskriminace:</strong> Jakékoliv projevy rasismu, xenofobie, homofobie, sexismu či jiné formy nenávistného projevu znamenají okamžitý trest.</li>
-            <li><strong>Zákaz spamu a CAPS LOCKu:</strong> Nespamuj textové ani hlasové kanály, neposílej opakovaně stejné zprávy a nepiš zbytečně celými velkými písmeny. A je zakázané pokazenie počítania v počítaní naschvál. A tým má posledné slovo.</li>
+            <li><strong>Zákaz spamu a CAPS LOCKu:</strong> Nespamuj textové ani hlasové kanály, neposílej opakovaně stejné zprávy a nepiš zbytečně celými velkými písmeny. Je zakázáno záměrné kažení počítání. Admin tým má poslední slovo.</li>
             <li><strong>Nevytvářej drama:</strong> Osobní konflikty a hádky si řešte v soukromých zprávách (DM), nikoliv ve veřejných kanálech.</li>
         </ul>
     </div>
 
     <div class="rule-card">
-        <h3>II. Soukromí a Bezpečnost</h3>
+        <h3><i class="fa-solid fa-shield-halved"></i> II. Soukromí a Bezpečnost</h3>
         <ul>
             <li><strong>Ochrana osobních údajů (Doxxing):</strong> Je přísně zakázáno sdílet osobní informace, fotky, telefonní čísla nebo reálná jména ostatních členů bez jejich souhlasu.</li>
             <li><strong>Zákaz nevhodného obsahu (NSFW):</strong> Posílání jakéhokoliv krvavého, šokujícího nebo jinak nevhodného obsahu je zakázáno.</li>
-            <li><strong>Bezpečnost účtů a odkazů:</strong> Je zakázáno posílat podezřelé odkazy, grabber IP adres, viry nebo jakékoliv phishingové stránky.</li>
+            <li><strong>Bezpečnost účtů a odkazů:</strong> Je zakázáno posílat podezřelé odkazy, IP grabbery, viry nebo jakékoliv phishingové stránky.</li>
         </ul>
     </div>
 
     <div class="rule-card">
-        <h3>III. Reklama a Promování</h3>
+        <h3><i class="fa-solid fa-bullhorn"></i> III. Reklama a Promování</h3>
         <ul>
-            <li><strong>Prísný zákaz reklamy:</strong> Jakákoliv propagace vlastních či cizích Discord serverů, YouTube/Twitch kanálů nebo jiných projektů v chatu je zakázána.</li>
+            <li><strong>Přísný zákaz reklamy:</strong> Jakákoliv propagace vlastních či cizích Discord serverů, YouTube/Twitch kanálů nebo jiných projektů v chatu je zakázána.</li>
             <li><strong>Zákaz reklamy v DM:</strong> Rozesílání pozvánek na jiné servery nebo nabídek členům do soukromých zpráv (DM) bude trestáno okamžitým banem.</li>
-            <li><strong>Označování (Pinging):</strong> Neznačuj bezdůvodně členy Admin Týmu ani hromadné role (jako @everyone / @here).</li>
+            <li><strong>Označování (Pinging):</strong> Neoznačuj bezdůvodně členy Admin Týmu ani hromadné role (jako @everyone / @here).</li>
         </ul>
     </div>
 
     <div class="rule-card">
-        <h3>IV. Hlasové kanály (VC)</h3>
+        <h3><i class="fa-solid fa-headset"></i> IV. Hlasové kanály (VC)</h3>
         <ul>
             <li><strong>Rušení v voice kanálech:</strong> Je zakázáno záměrně pouštět zvuky přes soundboard, křičet do mikrofonu nebo používat měniče hlasu k otravování ostatních.</li>
             <li><strong>Respektuj účel kanálu:</strong> Připojuj se do voice kanálů podle toho, co zrovna děláš (např. AFK kanál, klanové místnosti, atd.).</li>
@@ -178,10 +346,10 @@
     </div>
 
     <div class="rule-card">
-        <h3>V. Admin Tým a Podpora</h3>
+        <h3><i class="fa-solid fa-user-shield"></i> V. Admin Tým a Podpora</h3>
         <ul>
-            <li><strong>Respektuj rozhodnutí týmu:</strong> Rozhodnutí Moderatorů a Adminů jsou závazná. Pokud nesouhlasíš s trestem, řeš to slušně přes ticket.</li>
-            <li><strong>Zneužívání ticket systému:</strong> Tickety slouží výhradně pro řešení problémů, nahlášení hráčů nebo dotazy. Otvírání ticketů bez důvodu je zakázáno.</li>
+            <li><strong>Respektuj rozhodnutí týmu:</strong> Rozhodnutí Moderátorů a Adminů jsou závazná. Pokud nesouhlasíš s trestem, řeš to slušně přes ticket.</li>
+            <li><strong>Zneužívání ticket systému:</strong> Tickety slouží výhradně pro řešení problémů, nahlášení hráčů nebo dotazy. Otevírání ticketů bez důvodu je zakázáno.</li>
         </ul>
     </div>
 </div>
@@ -189,6 +357,22 @@
 <footer>
     <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>.</p>
 </footer>
+
+<script>
+    // Přepínač světlý / tmavý režim
+    const themeBtn = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    themeBtn.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        htmlElement.setAttribute('data-theme', newTheme);
+        themeBtn.innerHTML = newTheme === 'dark' 
+            ? '<i class="fa-solid fa-moon"></i>' 
+            : '<i class="fa-solid fa-sun"></i>';
+    });
+</script>
 
 </body>
 </html>
