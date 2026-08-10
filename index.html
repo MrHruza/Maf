@@ -1,352 +1,80 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" data-theme="dark">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>MAF Games | Minecraft Server</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MafSMP — Oficiální Portál</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
-            background-color: #0f172a;
-            font-family: 'Montserrat', sans-serif;
-            color: #ffffff;
-            scroll-behavior: smooth;
-        }
-
-        /* HORNÍ LIŠTA (NAVBAR) */
-        .navbar-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            background-color: #1e293b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            z-index: 9999;
-            padding: 0 30px;
-        }
-
-        .navbar-container {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .navbar-menu {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .nav-item {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: color 0.2s ease;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            color: #38bdf8;
-        }
-
-        .navbar-logo-img img {
-            height: 55px;
-            width: auto;
-            border-radius: 8px;
-            object-fit: contain;
-        }
-
-        /* HERO SEKCE */
-        .hero-section {
-            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.95)), 
-                        url('https://github.com/user-attachments/assets/23fd6b26-04be-453e-bfcd-5fde2ecb87e8') no-repeat center center;
-            background-size: cover;
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding-top: 80px;
-            box-sizing: border-box;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 20px;
-        }
-
-        /* LOGO UPROSTŘED HERO SEKCE */
-        .hero-logo-main {
-            max-width: 80%;
-            width: 320px;
-            height: auto;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: #94a3b8;
-            margin: 0;
-            max-width: 600px;
-        }
-
-        .hero-ip-box {
-            background: rgba(30, 41, 59, 0.6);
-            border: 2px dashed #38bdf8;
-            padding: 12px 30px;
-            border-radius: 30px;
-            color: #ffffff;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 10px;
-        }
-
-        .hero-ip-box:hover {
-            background: rgba(56, 189, 248, 0.2);
-            border-color: #38bdf8;
-            transform: scale(1.05);
-        }
-
-        /* O SERVERU */
-        .section-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            color: #38bdf8;
-            text-align: center;
-            margin-bottom: 15px;
-            font-weight: 800;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #64748b;
-            margin-bottom: 50px;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .info-card {
-            background: #1e293b;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .info-card i {
-            font-size: 2.5rem;
-            color: #38bdf8;
-            margin-bottom: 20px;
-        }
-
-        .info-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.3rem;
-        }
-
-        .info-card p {
-            color: #94a3b8;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        /* VÝBĚR REŽIMŮ */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .game-card {
-            background: #1e293b;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.2s ease;
-            text-align: center;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, 0.3);
-        }
-
-        .game-body {
-            padding: 30px 20px;
-        }
-
-        .game-body i {
-            font-size: 2.5rem;
-            color: #38bdf8;
-            margin-bottom: 15px;
-        }
-
-        .game-body h3 {
-            margin: 0 0 10px 0;
-            color: #ffffff;
-            font-size: 1.4rem;
-        }
-
-        .game-body p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        /* HLASOVÁNÍ (JIŽ BRZY) */
-        .vote-box {
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(56, 189, 248, 0.02) 100%);
-            border: 2px dashed rgba(56, 189, 248, 0.4);
-            border-radius: 20px;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .vote-badge {
-            display: inline-block;
-            background: #2563eb;
-            color: #fff;
-            font-weight: 800;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #090d16;
-            padding: 30px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        footer strong {
-            color: #ffffff;
-        }
-    </style>
 </head>
 <body>
 
-<header class="navbar-header">
-    <div class="navbar-container">
-        <nav class="navbar-menu">
-           <a href="index.html" class="nav-item active">Domů</a>
-           <a href="pravidla.html" class="nav-item">Pravidla</a>
-           <a href="team.html" class="nav-item">Admin Tým</a>
-           <a href="https://discord.gg/a6HTER5WP" target="_blank" class="nav-item">Discord</a>
-        </nav>
+    <nav class="navbar">
+        <div class="logo">Maf<span>SMP</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Domů</a></li>
+            <li><a href="#about">O serveru</a></li>
+            <li><a href="#features">Novinky</a></li>
+            <li><a href="#links">Odkazy</a></li>
+        </ul>
+        <button id="theme-toggle" class="theme-btn">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </nav>
 
-        <a href="index.html" class="navbar-logo-img">
-            <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games Logo">
-        </a>
-    </div>
-</header>
-
-<section class="hero-section">
-    <div class="hero-content">
-        <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games Logo" class="hero-logo-main">
-        <p class="hero-subtitle">Vítej na komunitním Minecraft serveru! Užij si skvělý zážitek a připoj se ještě dnes.</p>
-        <div class="hero-ip-box" onclick="navigator.clipboard.writeText('mc.mafgames.cz'); alert('IP adresa mc.mafgames.cz byla zkopírována!');">
-            <i class="fa-solid fa-copy"></i>
-            <span>mc.mafgames.cz</span>
-        </div>
-    </div>
-</section>
-
-<section class="section-container">
-    <h2 class="section-title">O NAŠEM SERVERU</h2>
-    <p class="section-subtitle">Proč hrát právě u nás na MAF Games?</p>
-    
-    <div class="info-grid">
-        <div class="info-card">
-            <i class="fa-solid fa-users"></i>
-            <h3>Skvělá Komunita</h3>
-            <p>Přátelští hráči a aktivní tým, který ti vždy rád pomůže s jakýmkoliv dotazem.</p>
-        </div>
-        <div class="info-card">
-            <i class="fa-solid fa-trophy"></i>
-            <h3>Pravidelné Eventy</h3>
-            <p>Každý týden pořádáme soutěže o unikátní odměny a výhody přímo ve hře.</p>
-        </div>
-    </div>
-</section>
-
-<section class="section-container" style="padding-top: 0;">
-    <h2 class="section-title">HERNÍ REŽIMY</h2>
-    <p class="section-subtitle">Co si u nás můžeš zahrát?</p>
-
-    <div class="games-grid">
-        <div class="game-card">
-            <div class="game-body">
-                <i class="fa-solid fa-cubes"></i>
-                <h3>SMP</h3>
-                <p>Anarchy / Free-for-All Survival bez pravidel pro PvP a griefing. Vše na vlastní nebezpečí!</p>
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>Vítejte na portálu <span class="highlight">MafSMP</span></h1>
+            <p>Nejlepší zážitek ze hry survival pro komunitu. Připoj se k nám ještě dnes!</p>
+            
+            <div class="ip-box">
+                <span id="server-ip">play.mafsmp.cz</span>
+                <button onclick="copyIP()" class="copy-btn"><i class="fa-regular fa-copy"></i> Zkopírovat IP</button>
             </div>
+            <p id="copy-message" class="copy-message"></p>
         </div>
-        <div class="game-card">
-            <div class="game-body">
-                <i class="fa-solid fa-tree"></i>
-                <h3>Survival</h3>
-                <p>Klasické přežití obohacené o rezidence, příkazy a speciální předměty.</p>
-            </div>
+    </header>
+
+    <section id="about" class="container">
+        <h2>O projektu</h2>
+        <p class="section-desc">
+            MafSMP je komunitní Minecraft server zaměřený na kvalitní survival, skvělou komunitu a unikátní herní prvky. Zkus vytvořit vlastní frakci, obchodovat s ostatními a ovládnout svět!
+        </p>
+    </section>
+
+    <section id="links" class="container">
+        <h2>Užitečné Odkazy</h2>
+        <div class="grid">
+            <a href="https://discord.gg/" target="_blank" class="card">
+                <i class="fa-brands fa-discord card-icon"></i>
+                <h3>Discord Server</h3>
+                <p>Připoj se k naší komunitě, sleduj oznamy a chatuj s hráči.</p>
+            </a>
+
+            <a href="#" class="card">
+                <i class="fa-solid fa-map card-icon"></i>
+                <h3>Dynmapa</h3>
+                <p>Prohlédni si naši herní mapu živě přímo z prohlížeče.</p>
+            </a>
+
+            <a href="#" class="card">
+                <i class="fa-solid fa-cart-shopping card-icon"></i>
+                <h3>Store / Obchod</h3>
+                <p>Podpoř chod serveru a získej výhodné VIP hodnosti a výhody.</p>
+            </a>
+
+            <a href="#" class="card">
+                <i class="fa-solid fa-book card-icon"></i>
+                <h3>Pravidla</h3>
+                <p>Přečti si pravidla serveru, aby ses vyhnul zbytečným trestům.</p>
+            </a>
         </div>
-        <div class="game-card">
-            <div class="game-body">
-                <i class="fa-solid fa-calendar-star"></i>
-                <h3>Eventy</h3>
-                <p>Speciální mini-hry a pravidelné turnaje, kde můžeš změřit síly s ostatními.</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="section-container" style="padding-top: 0;">
-    <h2 class="section-title">HLASOVÁNÍ</h2>
-    <div class="vote-box">
-        <div class="vote-badge">JIŽ BRZY</div>
-        <p style="color: #94a3b8; margin: 0;">Hlasování pro projekt MAF Games momentálně připravujeme.</p>
-    </div>
-</section>
+    <footer>
+        <p>&copy; 2026 MafSMP Portál. Všechna práva vyhrazena.</p>
+    </footer>
 
-<footer>
-    <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>. Tento projekt není oficiálním produktem Mojang AB.</p>
-</footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
