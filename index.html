@@ -346,7 +346,7 @@
         .slide-widget {
             position: fixed;
             bottom: 30px;
-            right: -400px; /* Schovaný mimo obrazovku */
+            right: -400px;
             width: 340px;
             background: var(--bg-card-solid);
             border: 2px solid var(--accent-blue);
@@ -476,8 +476,8 @@
     <div class="navbar-container">
         <nav class="navbar-menu">
            <a href="#domu" class="nav-item active">Domů</a>
-           <a href="#o-nas" class="nav-item">O nás</a>
-           <a href="#rezimy" class="nav-item">Režimy</a>
+           <a href="pravidla.html" class="nav-item">Pravidla</a>
+           <a href="team.html" class="nav-item">Náš tým</a>
            <a href="#discord-sekce" class="nav-item">Discord</a>
         </nav>
 
@@ -594,10 +594,8 @@
 </div>
 
 <script>
-    // ID tvého Discord serveru (z invite kódu a6HTER5WP)
     const DISCORD_INVITE_CODE = "a6HTER5WP";
 
-    // Načtení živého počtu členů na Discordu z oficiálního API
     async function loadDiscordOnlineCount() {
         const countElement = document.getElementById('discord-online-count');
         try {
@@ -614,7 +612,6 @@
         }
     }
 
-    // Přepínač světlý / tmavý režim
     const themeBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 
@@ -628,7 +625,6 @@
             : '<i class="fa-solid fa-sun"></i>';
     });
 
-    // Kopírování IP
     function copyIP() {
         const ip = document.getElementById('ip-text').innerText;
         navigator.clipboard.writeText(ip).then(() => {
@@ -640,7 +636,6 @@
         });
     }
 
-    // Vysunutí panelu ze strany po 3 sekundách od načtení
     window.addEventListener('load', () => {
         loadDiscordOnlineCount();
         setTimeout(() => {
@@ -648,7 +643,6 @@
         }, 3000);
     });
 
-    // Zavření vyskakovacího panelu
     function closeWidget() {
         document.getElementById('slide-widget').classList.remove('show');
     }
