@@ -11,29 +11,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- BAREVNÉ PROMĚNNÉ PRO LIGHT / DARK MODE --- */
+        /* --- BAREVNÉ PROMĚNNÉ A GRADIENTY --- */
         :root[data-theme="dark"] {
-            --bg-main: #0f172a;
-            --bg-card: #1e293b;
-            --bg-nav: #1e293b;
+            /* Tmavě modrá do ještě tmavší */
+            --bg-gradient: linear-gradient(135deg, #0b1329 0%, #040814 100%);
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --bg-card-solid: #1e293b;
+            --bg-nav: rgba(15, 23, 42, 0.9);
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --accent-blue: #38bdf8;
-            --accent-hover: #0284c7;
-            --border-color: rgba(255, 255, 255, 0.05);
-            --footer-bg: #090d16;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --footer-bg: #040814;
         }
 
         :root[data-theme="light"] {
-            --bg-main: #eef6ff;
-            --bg-card: #ffffff;
-            --bg-nav: #ffffff;
+            /* Světle modrá do ještě světlejší */
+            --bg-gradient: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-solid: #ffffff;
+            --bg-nav: rgba(255, 255, 255, 0.9);
             --text-main: #0f172a;
             --text-muted: #475569;
             --accent-blue: #0284c7;
-            --accent-hover: #0369a1;
             --border-color: rgba(0, 0, 0, 0.08);
-            --footer-bg: #dbeafe;
+            --footer-bg: #bfdbfe;
         }
 
         html, body {
@@ -41,11 +43,12 @@
             padding: 0;
             width: 100%;
             overflow-x: hidden;
-            background-color: var(--bg-main);
+            background: var(--bg-gradient);
+            background-attachment: fixed;
             font-family: 'Montserrat', sans-serif;
             color: var(--text-main);
             scroll-behavior: smooth;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         /* HORNÍ LIŠTA (NAVBAR) */
@@ -56,13 +59,13 @@
             right: 0;
             height: 80px;
             background-color: var(--bg-nav);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             z-index: 9999;
             padding: 0 30px;
-            transition: background-color 0.3s ease;
         }
 
         .navbar-container {
@@ -104,7 +107,6 @@
             object-fit: contain;
         }
 
-        /* Přepínač režimů */
         .theme-toggle-btn {
             background: transparent;
             border: 2px solid var(--accent-blue);
@@ -127,7 +129,7 @@
 
         /* HERO SEKCE */
         .hero-section {
-            background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.85)), 
+            background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.75)), 
                         url('https://github.com/user-attachments/assets/23fd6b26-04be-453e-bfcd-5fde2ecb87e8') no-repeat center center;
             background-size: cover;
             min-height: 85vh;
@@ -162,7 +164,7 @@
         }
 
         .hero-ip-box {
-            background: rgba(30, 41, 59, 0.8);
+            background: rgba(30, 41, 59, 0.85);
             border: 2px dashed var(--accent-blue);
             padding: 12px 30px;
             border-radius: 30px;
@@ -220,14 +222,13 @@
 
         .info-card, .game-card {
             background: var(--bg-card);
+            backdrop-filter: blur(8px);
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 30px 20px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: transform 0.2s ease, border-color 0.2s ease;
-            text-decoration: none;
-            color: var(--text-main);
         }
 
         .info-card:hover, .game-card:hover {
@@ -253,7 +254,156 @@
             margin: 0;
         }
 
-        /* HLASOVÁNÍ / ODKAZY */
+        /* DISCORD LARGE BANNER (Vyladěno podle tvého obrázku) */
+        .discord-banner {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .discord-info {
+            max-width: 550px;
+        }
+
+        .discord-header-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .discord-logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .discord-online-pill {
+            background: #5865F2;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 15px;
+        }
+
+        .discord-info h3 {
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+        }
+
+        .discord-info p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .btn-discord {
+            display: inline-block;
+            background: #5865F2;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .btn-discord:hover {
+            background: #4752c4;
+            transform: scale(1.05);
+        }
+
+        .discord-graphic-img {
+            max-width: 250px;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+        }
+
+        /* VYSKAKOVACÍ PANEL ZE STRANY (POPUP WIDGET) */
+        .slide-widget {
+            position: fixed;
+            bottom: 30px;
+            right: -380px; /* Schovaný mimo obrazovku */
+            width: 320px;
+            background: var(--bg-card-solid);
+            border: 2px solid var(--accent-blue);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: right 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .slide-widget.show {
+            right: 30px; /* Vysune se */
+        }
+
+        .widget-close {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .widget-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .widget-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .widget-text h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .widget-text p {
+            margin: 4px 0 0 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .btn-widget {
+            display: block;
+            text-align: center;
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 8px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* HLASOVÁNÍ */
         .vote-box {
             background: var(--bg-card);
             border: 2px dashed var(--accent-blue);
@@ -271,7 +421,6 @@
             border-radius: 20px;
             font-size: 1.1rem;
             margin-bottom: 15px;
-            letter-spacing: 1px;
         }
 
         /* FOOTER */
@@ -282,11 +431,20 @@
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
             font-size: 0.9rem;
-            transition: background-color 0.3s ease;
         }
 
         footer strong {
             color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            .discord-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .discord-header-badge {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -298,7 +456,7 @@
            <a href="#domu" class="nav-item active">Domů</a>
            <a href="#o-nas" class="nav-item">O nás</a>
            <a href="#rezimy" class="nav-item">Režimy</a>
-           <a href="#odkazy" class="nav-item">Odkazy</a>
+           <a href="#discord-sekce" class="nav-item">Discord</a>
         </nav>
 
         <div class="nav-right-tools">
@@ -371,26 +529,18 @@
     </div>
 </section>
 
-<section id="odkazy" class="section-container" style="padding-top: 0;">
-    <h2 class="section-title">DŮLEŽITÉ ODKAZY</h2>
-    <p class="section-subtitle">Vše na jednom místě pro tvůj pohodlný start</p>
-
-    <div class="info-grid">
-        <a href="https://discord.gg/a6HTER5WP" target="_blank" class="info-card">
-            <i class="fa-brands fa-discord"></i>
-            <h3>Discord</h3>
-            <p>Připoj se na náš komunitní server a neuteče ti žádná novinka.</p>
-        </a>
-        <a href="#" class="info-card">
-            <i class="fa-solid fa-map"></i>
-            <h3>Dynmapa</h3>
-            <p>Sleduj dění na serveru přímo ze svého prohlížeče na živé mapě.</p>
-        </a>
-        <a href="#" class="info-card">
-            <i class="fa-solid fa-basket-shopping"></i>
-            <h3>Obchod</h3>
-            <p>Podpoř chod serveru a získej jedinečné výhody a VIP hodnosti.</p>
-        </a>
+<section id="discord-sekce" class="section-container" style="padding-top: 0;">
+    <div class="discord-banner">
+        <div class="discord-info">
+            <div class="discord-header-badge">
+                <div class="discord-logo"><i class="fa-brands fa-discord" style="color: #5865F2;"></i> Discord</div>
+                <span class="discord-online-pill">4 540 uživatelů</span>
+            </div>
+            <h3>Přidej se k naší discord komunitě</h3>
+            <p>Naše komunita je prostě fajn, a my věříme, že i ty si v naší super komunitě najdeš své lidi, se kterými si rád popíšete, zavoláš nebo třeba poobchoduješ.</p>
+            <a href="https://discord.gg/a6HTER5WP" target="_blank" class="btn-discord">Přidat se hned!</a>
+        </div>
+        <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="Discord Grafika" class="discord-graphic-img">
     </div>
 </section>
 
@@ -405,6 +555,18 @@
 <footer>
     <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>. Tento projekt není oficiálním produktem Mojang AB.</p>
 </footer>
+
+<div id="slide-widget" class="slide-widget">
+    <button class="widget-close" onclick="closeWidget()">&times;</button>
+    <div class="widget-content">
+        <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="Logo" class="widget-img">
+        <div class="widget-text">
+            <h4>Připoj se k nám!</h4>
+            <p>Sleduj novinky a chatuj s komunitou na Discordu.</p>
+        </div>
+    </div>
+    <a href="https://discord.gg/a6HTER5WP" target="_blank" class="btn-widget"><i class="fa-brands fa-discord"></i> Otevřít Discord</a>
+</div>
 
 <script>
     // Přepínač světlý / tmavý režim
@@ -431,6 +593,18 @@
                 toast.innerText = '';
             }, 3000);
         });
+    }
+
+    // Vysunutí panelu ze strany po 3 sekundách od načtení
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('slide-widget').classList.add('show');
+        }, 3000);
+    });
+
+    // Zavření vyskakovacího panelu
+    function closeWidget() {
+        document.getElementById('slide-widget').classList.remove('show');
     }
 </script>
 
