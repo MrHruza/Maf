@@ -2,20 +2,19 @@
 <html lang="cs" data-theme="dark">
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>MAF Games | Minecraft Server</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- BAREVNÉ PROMĚNNÉ A GRADIENTY --- */
+        /* --- BAREVNÉ PROMĚNNÉ --- */
         :root[data-theme="dark"] {
             --bg-gradient: linear-gradient(135deg, #0b1329 0%, #040814 100%);
             --bg-card: rgba(30, 41, 59, 0.75);
-            --bg-card-solid: #1e293b;
             --bg-nav: #0f172a;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
@@ -27,7 +26,6 @@
         :root[data-theme="light"] {
             --bg-gradient: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
             --bg-card: rgba(255, 255, 255, 0.85);
-            --bg-card-solid: #ffffff;
             --bg-nav: #ffffff;
             --text-main: #0f172a;
             --text-muted: #475569;
@@ -57,10 +55,10 @@
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
+            width: 100%;
             height: 70px;
             background-color: var(--bg-nav);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             z-index: 99999;
             padding: 0 15px;
             display: flex;
@@ -76,14 +74,16 @@
             justify-content: space-between;
         }
 
+        /* Logo v liště */
         .navbar-logo-img img {
-            height: 45px;
+            height: 38px;
+            max-width: 140px;
             width: auto;
-            border-radius: 6px;
+            object-fit: contain;
             display: block;
         }
 
-        /* MENU PRE DESKTOP */
+        /* Menu pro počítače */
         .navbar-menu {
             display: flex;
             align-items: center;
@@ -96,13 +96,13 @@
             font-size: 0.95rem;
             font-weight: 600;
             transition: color 0.2s ease;
-            white-space: nowrap;
         }
 
         .nav-item:hover, .nav-item.active {
             color: var(--accent-blue);
         }
 
+        /* Tlačítka vpravo (Světlo + Mobilní menu) */
         .nav-right-tools {
             display: flex;
             align-items: center;
@@ -110,66 +110,68 @@
         }
 
         .theme-toggle-btn, .mobile-toggle-btn {
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(56, 189, 248, 0.15);
             border: 2px solid var(--accent-blue);
             color: var(--accent-blue);
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 10px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.2s ease;
+            font-size: 1.1rem;
+            flex-shrink: 0;
         }
 
         .mobile-toggle-btn {
             display: none; /* Na PC skryté */
         }
 
-        /* MOBILNÍ ROZBALOVACÍ TABULKA / PANELY */
+        /* OPRAVA PRO MOBILY (MENU SE ROZBALÍ JAKO TABULKA POD LIŠTOU) */
         @media (max-width: 768px) {
             .mobile-toggle-btn {
-                display: flex; /* Na mobilu viditelné */
+                display: flex; /* Na mobilu se zobrazí tlačítko ☰ */
             }
 
             .navbar-menu {
-                display: none; /* Ve výchozím stavu na mobilu skryté */
+                display: none; /* Ve výchozím stavu skryté */
                 position: fixed;
                 top: 70px;
                 left: 0;
                 width: 100%;
                 background: var(--bg-nav);
                 flex-direction: column;
-                padding: 20px;
-                gap: 12px;
+                padding: 15px;
+                gap: 10px;
                 box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-                border-bottom: 2px solid var(--accent-blue);
+                border-bottom: 3px solid var(--accent-blue);
             }
 
+            /* Třída pro zobrazení po kliknutí */
             .navbar-menu.show {
-                display: flex; /* Zobrazí se po kliknutí */
+                display: flex !important;
             }
 
             .nav-item {
                 width: 100%;
                 text-align: center;
-                padding: 14px 0;
+                padding: 12px 0;
                 background: var(--bg-card);
                 border: 1px solid var(--border-color);
-                border-radius: 10px;
-                font-size: 1.1rem;
+                border-radius: 8px;
+                font-size: 1rem;
+                font-weight: 700;
                 color: var(--text-main);
             }
         }
 
         /* HERO SEKCE */
         .hero-section {
-            background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.85)), 
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.85)), 
                         url('https://github.com/user-attachments/assets/23fd6b26-04be-453e-bfcd-5fde2ecb87e8') no-repeat center center;
             background-size: cover;
-            min-height: 80vh;
+            min-height: 75vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -186,22 +188,22 @@
         }
 
         .hero-logo-main {
-            max-width: 260px;
+            max-width: 240px;
             width: 100%;
             height: auto;
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #e2e8f0;
-            max-width: 500px;
+            max-width: 480px;
             margin: 0;
         }
 
         .hero-ip-box {
             background: rgba(30, 41, 59, 0.9);
             border: 2px dashed var(--accent-blue);
-            padding: 12px 25px;
+            padding: 10px 22px;
             border-radius: 30px;
             color: #ffffff;
             font-weight: 700;
@@ -209,25 +211,25 @@
             align-items: center;
             gap: 10px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .copy-toast {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--accent-blue);
-            height: 20px;
+            height: 18px;
             font-weight: 600;
         }
 
-        /* OBSAHOVÉ SEKCE */
+        /* SEKCÍ CONTAINER */
         .section-container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 40px 20px;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent-blue);
             text-align: center;
             margin-bottom: 8px;
@@ -237,45 +239,16 @@
         .section-subtitle {
             text-align: center;
             color: var(--text-muted);
-            margin-bottom: 35px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
         }
 
-        .info-grid, .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .info-card, .game-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 25px 20px;
-            text-align: center;
-        }
-
-        .info-card i, .game-card i {
-            font-size: 2.2rem;
-            color: var(--accent-blue);
-            margin-bottom: 12px;
-        }
-
-        .info-card h3, .game-card h3 {
-            margin: 0 0 8px 0;
-        }
-
-        .info-card p, .game-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        /* DISCORD SEKCE */
+        /* DISCORD BANNER */
         .discord-banner {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 30px 20px;
+            padding: 25px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -288,7 +261,7 @@
                 flex-direction: row;
                 text-align: left;
                 justify-content: space-between;
-                padding: 40px;
+                padding: 35px;
             }
         }
 
@@ -322,7 +295,7 @@
         }
 
         .discord-graphic-img {
-            max-width: 250px;
+            max-width: 220px;
             width: 100%;
             height: auto;
             border-radius: 12px;
@@ -330,7 +303,7 @@
 
         footer {
             background: var(--footer-bg);
-            padding: 25px 20px;
+            padding: 20px;
             text-align: center;
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
@@ -378,64 +351,18 @@
     </div>
 </section>
 
-<section id="o-nas" class="section-container">
-    <h2 class="section-title">O NAŠEM SERVERU</h2>
-    <p class="section-subtitle">Proč hrát právě u nás na MAF Games?</p>
-    
-    <div class="info-grid">
-        <div class="info-card">
-            <i class="fa-solid fa-users"></i>
-            <h3>Skvělá Komunita</h3>
-            <p>Přátelští hráči a aktivní tým, který ti vždy rád pomůže s jakýmkoliv dotazem.</p>
-        </div>
-        <div class="info-card">
-            <i class="fa-solid fa-trophy"></i>
-            <h3>Pravidelné Eventy</h3>
-            <p>Každý týden pořádáme soutěže o unikátní odměny a výhody přímo ve hře.</p>
-        </div>
-        <div class="info-card">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h3>Aktivní A-Tým</h3>
-            <p>Náš týmový admin panel se stará o klidnou hru bez cheaterů a škůdců.</p>
-        </div>
-    </div>
-</section>
-
-<section id="rezimy" class="section-container" style="padding-top: 0;">
-    <h2 class="section-title">HERNÍ REŽIMY</h2>
-    <p class="section-subtitle">Co si u nás můžeš zahrát?</p>
-
-    <div class="games-grid">
-        <div class="game-card">
-            <i class="fa-solid fa-cubes"></i>
-            <h3>MafSMP</h3>
-            <p>Speciální zážitek, kde s frakcemi a přáteli buduješ své království.</p>
-        </div>
-        <div class="game-card">
-            <i class="fa-solid fa-tree"></i>
-            <h3>Survival</h3>
-            <p>Klasické přežití obohacené o rezidence, trh a speciální prvky.</p>
-        </div>
-        <div class="game-card">
-            <i class="fa-solid fa-calendar-check"></i>
-            <h3>Eventy</h3>
-            <p>Speciální mini-hry a pravidelné turnaje o věcné ceny.</p>
-        </div>
-    </div>
-</section>
-
-<section id="discord-sekce" class="section-container" style="padding-top: 0;">
+<section id="discord-sekce" class="section-container">
     <div class="discord-banner">
         <div class="discord-info">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; justify-content: center;">
-                <span style="font-size: 1.5rem; font-weight: 800;"><i class="fa-brands fa-discord" style="color: #5865F2;"></i> Discord</span>
+                <span style="font-size: 1.4rem; font-weight: 800;"><i class="fa-brands fa-discord" style="color: #5865F2;"></i> Discord</span>
                 <span class="discord-online-pill">
                     <span class="online-dot"></span>
-                    <span id="discord-online-count">4540 uživatelů</span>
+                    <span>4540 uživatelů</span>
                 </span>
             </div>
-            <h3 style="margin: 10px 0;">Přidej se k naší discord komunitě</h3>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">Naše komunita je prostě fajn, a my věříme, že i ty si v naší super komunitě najdeš své lidi.</p>
+            <h3 style="margin: 10px 0; font-size: 1.4rem;">Přidej se k naší discord komunitě</h3>
+            <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">Naše komunita je prostě fajn, a my věříme, že i ty si v naší super komunitě najdeš své lidi.</p>
             <a href="https://discord.gg/a6HTER5WP" target="_blank" class="btn-discord">Přidat se hned!</a>
         </div>
         <img src="https://github.com/user-attachments/assets/43f15886-1644-447a-a847-0c2715123eac" alt="Discord Grafika" class="discord-graphic-img">
@@ -447,7 +374,7 @@
 </footer>
 
 <script>
-    // Funkce pro otevření/zavření tabulky menu na mobilu
+    // Skript pro otevření a zavření mobilní tabulky s nabídkou stránek
     function toggleMenu() {
         const menu = document.getElementById('nav-menu');
         const icon = document.getElementById('menu-icon');
@@ -456,14 +383,14 @@
 
         if (menu.classList.contains('show')) {
             icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
+            icon.classList.add('fa-xmark'); // Změní ikonu na X
         } else {
             icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
+            icon.classList.add('fa-bars'); // Změní ikonu zpět na ☰
         }
     }
 
-    // Přepínání světlého a tmavého režimu
+    // Přepínání tmavého a světlého režimu
     const themeBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 
