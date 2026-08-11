@@ -2,7 +2,7 @@
 <html lang="cs" data-theme="dark">
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>MAF Games | Pravidla</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
             --bg-gradient: linear-gradient(135deg, #0b1329 0%, #040814 100%);
             --bg-card: rgba(30, 41, 59, 0.75);
             --bg-card-solid: #1e293b;
-            --bg-nav: rgba(15, 23, 42, 0.9);
+            --bg-nav: #0f172a;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --accent-blue: #38bdf8;
@@ -28,12 +28,16 @@
             --bg-gradient: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
             --bg-card: rgba(255, 255, 255, 0.85);
             --bg-card-solid: #ffffff;
-            --bg-nav: rgba(255, 255, 255, 0.9);
+            --bg-nav: #ffffff;
             --text-main: #0f172a;
             --text-muted: #475569;
             --accent-blue: #0284c7;
             --border-color: rgba(0, 0, 0, 0.08);
             --footer-bg: #bfdbfe;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
         }
 
         html, body {
@@ -46,7 +50,6 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--text-main);
             scroll-behavior: smooth;
-            transition: all 0.3s ease;
         }
 
         /* HORNÍ LIŠTA (NAVBAR) */
@@ -54,36 +57,44 @@
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            height: 80px;
+            width: 100%;
+            height: 70px;
             background-color: var(--bg-nav);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            z-index: 99999;
+            padding: 0 15px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            z-index: 9999;
-            padding: 0 30px;
         }
 
         .navbar-container {
             width: 100%;
             max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
+        .navbar-logo-img img {
+            height: 38px;
+            max-width: 130px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* MENU PRO DESKTOP */
         .navbar-menu {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
         }
 
         .nav-item {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             transition: color 0.2s ease;
         }
@@ -95,46 +106,75 @@
         .nav-right-tools {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
         }
 
-        .navbar-logo-img img {
-            height: 50px;
-            width: auto;
-            border-radius: 8px;
-            object-fit: contain;
-        }
-
-        .theme-toggle-btn {
-            background: transparent;
+        .theme-toggle-btn, .mobile-toggle-btn {
+            background: rgba(56, 189, 248, 0.15);
             border: 2px solid var(--accent-blue);
             color: var(--accent-blue);
             width: 40px;
             height: 40px;
-            border-radius: 50%;
+            border-radius: 10px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.1rem;
-            transition: all 0.2s ease;
+            flex-shrink: 0;
         }
 
-        .theme-toggle-btn:hover {
-            background: var(--accent-blue);
-            color: #ffffff;
+        .mobile-toggle-btn {
+            display: none;
+        }
+
+        /* ROZBALOVACÍ MENU PRO MOBILY */
+        @media (max-width: 768px) {
+            .mobile-toggle-btn {
+                display: flex;
+            }
+
+            .navbar-menu {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-nav);
+                flex-direction: column;
+                padding: 15px;
+                gap: 10px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+                border-bottom: 3px solid var(--accent-blue);
+            }
+
+            .navbar-menu.show {
+                display: flex !important;
+            }
+
+            .nav-item {
+                width: 100%;
+                text-align: center;
+                padding: 12px 0;
+                background: var(--bg-card);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                font-size: 1rem;
+                font-weight: 700;
+                color: var(--text-main);
+            }
         }
 
         /* HLAVNÍ OBSAH */
         .container {
             max-width: 950px;
             margin: 0 auto;
-            padding: 120px 20px 80px 20px;
+            padding: 110px 20px 80px 20px;
         }
 
         .page-title {
             color: var(--accent-blue);
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             text-align: center;
             margin-bottom: 10px;
             font-weight: 800;
@@ -145,16 +185,16 @@
         .page-desc {
             text-align: center;
             color: var(--text-muted);
-            margin-bottom: 50px;
-            font-size: 1.05rem;
+            margin-bottom: 40px;
+            font-size: 1rem;
         }
 
         .rules-section-heading {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--text-main);
             border-bottom: 3px solid var(--accent-blue);
             padding-bottom: 8px;
-            margin: 50px 0 25px 0;
+            margin: 40px 0 25px 0;
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -181,7 +221,7 @@
 
         .rule-card h3 {
             margin: 0 0 15px 0;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: var(--accent-blue);
             display: flex;
             align-items: center;
@@ -206,11 +246,11 @@
         /* PATIČKA */
         footer {
             background: var(--footer-bg);
-            padding: 30px 20px;
+            padding: 25px 20px;
             text-align: center;
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         footer strong {
@@ -219,13 +259,13 @@
 
         @media (max-width: 768px) {
             .page-title {
-                font-size: 1.8rem;
+                font-size: 1.7rem;
             }
             .rules-section-heading {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
             .rule-card {
-                padding: 20px;
+                padding: 20px 18px;
             }
         }
     </style>
@@ -234,27 +274,32 @@
 
 <header class="navbar-header">
     <div class="navbar-container">
-        <nav class="navbar-menu">
-           <a href="index.html" class="nav-item">Domů</a>
-           <a href="pravidla.html" class="nav-item active">Pravidla</a>
-           <a href="team.html" class="nav-item">Náš tým</a>
-           <a href="https://discord.gg/a6HTER5WP" target="_blank" class="nav-item">Discord</a>
+        <a href="index.html" class="navbar-logo-img">
+            <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games Logo">
+        </a>
+
+        <nav class="navbar-menu" id="nav-menu">
+            <a href="index.html" class="nav-item" onclick="toggleMenu()">Domů</a>
+            <a href="pravidla.html" class="nav-item active" onclick="toggleMenu()">Pravidla</a>
+            <a href="team.html" class="nav-item" onclick="toggleMenu()">Náš tým</a>
+            <a href="index.html#discord-sekce" class="nav-item" onclick="toggleMenu()">Discord</a>
         </nav>
 
         <div class="nav-right-tools">
             <button id="theme-toggle" class="theme-toggle-btn" title="Přepnout režim">
                 <i class="fa-solid fa-moon"></i>
             </button>
-            <a href="index.html" class="navbar-logo-img">
-                <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games Logo">
-            </a>
+            
+            <button class="mobile-toggle-btn" onclick="toggleMenu()" title="Otevřít menu">
+                <i class="fa-solid fa-bars" id="menu-icon"></i>
+            </button>
         </div>
     </div>
 </header>
 
 <div class="container">
     <h1 class="page-title">Pravidla Serveru a Discordu</h1>
-    <p class="page-desc">Neznalost pravidiel neomlouvá. Všichni hráči a členové komunity jsou povinni je dodržovat.</p>
+    <p class="page-desc">Neznalost pravidel neomlouvá. Všichni hráči a členové komunity jsou povinni je dodržovat.</p>
 
     <h2 class="rules-section-heading">
         <i class="fa-solid fa-cube"></i> PRAVIDLA PRO SMP 2026
@@ -359,6 +404,22 @@
 </footer>
 
 <script>
+    // Funkce pro otvírání a zavírání menu na mobilu
+    function toggleMenu() {
+        const menu = document.getElementById('nav-menu');
+        const icon = document.getElementById('menu-icon');
+        
+        menu.classList.toggle('show');
+
+        if (menu.classList.contains('show')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark');
+        } else {
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+    }
+
     // Přepínač světlý / tmavý režim
     const themeBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
