@@ -400,7 +400,7 @@
         </button>
     </section>
 
-    <div id="discord-sekce" class="discord-custom-block">
+<div id="discord-sekce" class="discord-custom-block">
         <div class="discord-content-wrapper">
             
             <div class="discord-text-side">
@@ -408,7 +408,7 @@
                     <i class="fa-brands fa-discord badge-icon"></i>
                     <div class="badge-text">
                         <span id="discord-online-dot" class="online-dot"></span>
-                        <span id="discord-members-count">---</span> uživatelů
+                        <span id="discord-members-count">---</span> <span id="discord-members-text">členů</span>
                     </div>
                 </div>
                 
@@ -417,7 +417,7 @@
                     Naše komunita je prostě fajn, a my věříme, že i ty si v naší super komunitě najdeš své lidi, se kterými si rád popíšeš, zavoláš nebo třeba poobchoduješ.
                 </p>
                 
-                <a href="https://discord.gg/n7PsVuE2Pu" target="_blank" class="discord-join-btn">
+                <a href="https://discord.gg/n7PsVuE2Pu" target="_blank" rel="noopener noreferrer" class="discord-join-btn">
                     Přidat se hned!
                 </a>
             </div>
@@ -428,7 +428,6 @@
 
         </div>
     </div>
-</div>
 
 <footer>
     <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>.</p>
@@ -466,36 +465,57 @@
     const themeBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 
-    themeBtn.addEventListener('click', () => {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        htmlElement.setAttribute('data-theme', newTheme);
-        themeBtn.innerHTML = newTheme === 'dark' 
-            ? '<i class="fa-solid fa-moon"></i>' 
-            : '<i class="fa-solid fa-sun"></i>';
-    });
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            themeBtn.innerHTML = newTheme === 'dark' 
+                ? '<i class="fa-solid fa-moon"></i>' 
+                : '<i class="fa-solid fa-sun"></i>';
+        });
+    }
 
-    // Automatické načítání počtu členů z Discord API
+    // Automatické načítání reálného počtu členů z Discord linku
     function updateDiscordMembersCount() {
         const INVITE_CODE = "n7PsVuE2Pu";
-        const TEXT_FIELD_ID = "discord-members-count";
+        const countElement = document.getElementById("discord-members-count");
+        const textElement = document.getElementById("discord-members-text");
 
-        fetch(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`)
-            .then(response => response.json())
+        // Použití CORS proxy pro obcházení CORS blokace v prohlížeči
+        const apiUrl = `https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`;
+        const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`;
+
+        fetch(proxyUrl)
+            .then(response => {
+                if (!response.ok) throw new Error("Chyba odpovědi z API");
+                return response.json();
+            })
             .then(data => {
-                if (data.approximate_member_count) {
-                    document.getElementById(TEXT_FIELD_ID).textContent = data.approximate_member_count;
+                if (data && data.approximate_member_count) {
+                    const count = data.approximate_member_count;
+                    countElement.textContent = count.toLocaleString('cs-CZ'); // Formátování čísla (např. 4 540)
+                    
+                    // Správné skloňování slova člen/členové/členů
+                    if (textElement) {
+                        if (count === 1) textElement.textContent = "člen";
+                        else if (count >= 2 && count <= 4) textElement.textContent = "členové";
+                        else textElement.textContent = "členů";
+                    }
                 }
             })
             .catch(error => {
                 console.error("Chyba při načítání Discord členů:", error);
-                document.getElementById(TEXT_FIELD_ID).textContent = "4540";
+                // V případě chyby načtení
+                if (countElement.textContent === "---") {
+                    countElement.textContent = "Neznámo";
+                }
             });
     }
 
     window.addEventListener('DOMContentLoaded', updateDiscordMembersCount);
-    setInterval(updateDiscordMembersCount, 120000);
+    setInterval(updateDiscordMembersCount, 120000); // Aktualizace každé 2 minuty
 </script>
 
 </body>
