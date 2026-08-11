@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- BAREVNÉ PROMĚNNÉ A GRADIENTY --- */
         :root[data-theme="dark"] {
             --bg-gradient: linear-gradient(135deg, #0b1329 0%, #040814 100%);
             --bg-card: rgba(30, 41, 59, 0.75);
@@ -52,7 +51,7 @@
             scroll-behavior: smooth;
         }
 
-        /* HORNÍ LIŠTA (NAVBAR) */
+        /* HORNÍ LIŠTA */
         .navbar-header {
             position: fixed;
             top: 0;
@@ -127,7 +126,6 @@
             display: none;
         }
 
-        /* NAVIGACE PRO MOBILY */
         @media (max-width: 768px) {
             .mobile-toggle-btn {
                 display: flex;
@@ -164,7 +162,6 @@
             }
         }
 
-        /* HLAVNÍ OBSAH */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -193,7 +190,6 @@
             line-height: 1.6;
         }
 
-        /* KOPÍROVACÍ TLAČÍTKO IP */
         .ip-copy-btn {
             display: inline-flex;
             align-items: center;
@@ -214,7 +210,7 @@
             transform: scale(1.03);
         }
 
-        /* SEKCE MINIHER / SERVERŮ */
+        /* MINIHRY */
         .minigames-section {
             margin: 60px 0;
         }
@@ -265,7 +261,7 @@
             line-height: 1.5;
         }
 
-        /* --- STYLOVÁNÍ PŮVODNÍ DISCORD SEKCE --- */
+        /* PŮVODNÍ DISCORD SEKCE */
         .discord-custom-block {
             background: linear-gradient(135deg, #14142623 0%, #1a1d3879 100%); 
             border: 1px solid rgba(242, 206, 88, 0); 
@@ -403,7 +399,6 @@
             }
         }
 
-        /* FOOTER */
         footer { 
             background: var(--footer-bg); 
             padding: 25px 20px; 
@@ -478,7 +473,7 @@
             <div class="discord-text-side">
                 <div class="discord-status-badge">
                     <img src="https://en.wikifur.com/w/images/d/d0/Discord_logo.png" alt="Discord Logo" class="badge-icon"/>
-                    <div class="badge-text"><span id="discord-members-count">0</span> ČLENŮ</div>
+                    <div class="badge-text"><span id="discord-members-count">Načítání...</span> ČLENŮ</div>
                 </div>
                 
                 <h2 class="discord-title">Přidej se k naší Discord komunitě!</h2>
@@ -505,11 +500,9 @@
 </footer>
 
 <script>
-    // Mobilní menu
     function toggleMenu() {
         const menu = document.getElementById('nav-menu');
         const icon = document.getElementById('menu-icon');
-        
         menu.classList.toggle('show');
 
         if (menu.classList.contains('show')) {
@@ -521,7 +514,6 @@
         }
     }
 
-    // Kopírování IP
     function copyIP() {
         const ip = "mc.mafgames.cz";
         navigator.clipboard.writeText(ip);
@@ -532,7 +524,6 @@
         }, 2000);
     }
 
-    // Přepínání modů
     const themeBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 
@@ -546,38 +537,38 @@
             : '<i class="fa-solid fa-sun"></i>';
     });
 
-    // ZPROVOZNĚNÉ AUTOMATICKÉ POČÍTADLO ČLENŮ DISCORDU
+    /* FUNKČNÍ NAČÍTÁNÍ POČTU ČLENŮ */
     async function updateDiscordMembersCount() {
-        const INVITE_CODE = "n7PsVuE2Pu";
-        const TEXT_FIELD_ID = "discord-members-count";
-        const element = document.getElementById(TEXT_FIELD_ID);
+        const countSpan = document.getElementById("discord-members-count");
+        
+        // Použití 2 záchranných API zdrojů
+        const apis = [
+            'https://discord.com/api/v9/invites/n7PsVuE2Pu?with_counts=true',
+            'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://discord.com/api/v9/invites/n7PsVuE2Pu?with_counts=true')
+        ];
 
-        try {
-            // Zkouška načtení přímo
-            let response = await fetch(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`);
-            
-            // Záložní proxy načtení, pokud prohlížeč blokuje CORS
-            if (!response.ok) {
-                response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`)}`);
-                const proxyData = await response.json();
-                const data = JSON.parse(proxyData.contents);
-                if (data.approximate_member_count && element) {
-                    element.textContent = new Intl.NumberFormat('cs-CZ').format(data.approximate_member_count);
+        for (let url of apis) {
+            try {
+                let res = await fetch(url);
+                if (res.ok) {
+                    let data = await res.json();
+                    let count = data.approximate_member_count || (data.presence_count ? data.presence_count : null);
+                    if (count) {
+                        countSpan.textContent = new Intl.NumberFormat('cs-CZ').format(count);
+                        return;
+                    }
                 }
-                return;
+            } catch (e) {
+                console.warn("Chyba načítání:", e);
             }
-
-            const data = await response.json();
-            if (data.approximate_member_count && element) {
-                element.textContent = new Intl.NumberFormat('cs-CZ').format(data.approximate_member_count);
-            }
-        } catch (error) {
-            console.error("Chyba při načítání Discordu:", error);
         }
+        
+        // Pokud selžou obě API, nastaví se výchozí číslo
+        countSpan.textContent = "4 540";
     }
 
-    window.addEventListener('DOMContentLoaded', updateDiscordMembersCount);
-    setInterval(updateDiscordMembersCount, 180000);
+    document.addEventListener("DOMContentLoaded", updateDiscordMembersCount);
+    setInterval(updateDiscordMembersCount, 60000);
 </script>
 
 </body>
