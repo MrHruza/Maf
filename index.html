@@ -96,7 +96,7 @@
         .nav-right-tools {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .navbar-logo-img img {
@@ -106,7 +106,7 @@
             object-fit: contain;
         }
 
-        .theme-toggle-btn {
+        .theme-toggle-btn, .mobile-menu-btn {
             background: transparent;
             border: 2px solid var(--accent-blue);
             color: var(--accent-blue);
@@ -122,9 +122,14 @@
             flex-shrink: 0;
         }
 
-        .theme-toggle-btn:hover {
+        .theme-toggle-btn:hover, .mobile-menu-btn:hover {
             background: var(--accent-blue);
             color: #ffffff;
+        }
+
+        /* Tlačítko menu skryté na PC */
+        .mobile-menu-btn {
+            display: none;
         }
 
         /* HERO SEKCE */
@@ -462,35 +467,44 @@
             color: var(--text-main);
         }
 
-        /* --- VYLADĚNÍ PRO MOBILNÍ ZAŘÍZENÍ --- */
+        /* --- MOBILNÍ ÚPRAVY A NAVIGAČNÍ TABULKA --- */
         @media (max-width: 768px) {
             .navbar-header {
-                height: auto;
-                padding: 12px 15px;
+                height: 70px;
+                padding: 0 15px;
             }
 
-            .navbar-container {
-                gap: 10px;
+            .mobile-menu-btn {
+                display: flex;
             }
 
-            /* Rolovací menu na mobilu bez sekání */
+            /* Vytvoření vysouvacího tabu na mobilu */
             .navbar-menu {
-                overflow-x: auto;
-                padding-bottom: 4px;
-                gap: 15px;
-                -webkit-overflow-scrolling: touch;
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--bg-nav);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 30px;
+                gap: 20px;
+                transition: left 0.3s ease;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             }
 
-            .navbar-menu::-webkit-scrollbar {
-                display: none;
+            .navbar-menu.open {
+                left: 0;
             }
 
             .nav-item {
-                font-size: 0.9rem;
-            }
-
-            .navbar-logo-img img {
-                height: 40px;
+                font-size: 1.2rem;
+                padding: 10px 20px;
+                width: 80%;
+                text-align: center;
+                background: rgba(255,255,255,0.05);
+                border-radius: 12px;
             }
 
             .discord-banner {
@@ -503,7 +517,6 @@
                 justify-content: center;
             }
 
-            /* Reklama/Widget ze strany vyjede na mobilu SPODU jako panel */
             .slide-widget {
                 left: 15px;
                 right: 15px;
@@ -524,11 +537,15 @@
 
 <header class="navbar-header">
     <div class="navbar-container">
-        <nav class="navbar-menu">
-           <a href="#domu" class="nav-item active">Domů</a>
-           <a href="pravidla.html" class="nav-item">Pravidla</a>
-           <a href="team.html" class="nav-item">Náš tým</a>
-           <a href="#discord-sekce" class="nav-item">Discord</a>
+        <button class="mobile-menu-btn" onclick="toggleMenu()" title="Otevřít nabídku">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+        </button>
+
+        <nav class="navbar-menu" id="mobile-menu">
+           <a href="#domu" class="nav-item active" onclick="closeMenu()">Domů</a>
+           <a href="pravidla.html" class="nav-item" onclick="closeMenu()">Pravidla</a>
+           <a href="team.html" class="nav-item" onclick="closeMenu()">Náš tým</a>
+           <a href="#discord-sekce" class="nav-item" onclick="closeMenu()">Discord</a>
         </nav>
 
         <div class="nav-right-tools">
@@ -674,6 +691,29 @@
             ? '<i class="fa-solid fa-moon"></i>' 
             : '<i class="fa-solid fa-sun"></i>';
     });
+
+    /* Funkce pro otevření a zavření nabídky na mobilu */
+    function toggleMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+        menu.classList.toggle('open');
+        
+        if (menu.classList.contains('open')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark');
+        } else {
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+    }
+
+    function closeMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+        menu.classList.remove('open');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+    }
 
     function copyIP() {
         const ip = document.getElementById('ip-text').innerText;
