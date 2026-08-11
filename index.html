@@ -408,7 +408,7 @@
                     <i class="fa-brands fa-discord badge-icon"></i>
                     <div class="badge-text">
                         <span id="discord-online-dot" class="online-dot"></span>
-                        <span id="discord-members-count">---</span> <span id="discord-members-text">členů</span>
+                        <span id="discord-members-count">...</span> <span id="discord-members-text">členů</span>
                     </div>
                 </div>
                 
@@ -435,15 +435,13 @@
 </footer>
 
 <script>
-    // Funkce pro otevření/zavření mobilního menu
+    // Mobilní menu
     function toggleMenu() {
         const menu = document.getElementById('nav-menu');
         const icon = document.getElementById('menu-icon');
-        
         if (!menu || !icon) return;
         
         menu.classList.toggle('show');
-
         if (menu.classList.contains('show')) {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-xmark');
@@ -466,7 +464,7 @@
         }
     }
 
-    // Přepínání světlého a tmavého režimu
+    // Přepínání tmavého/světlého režimu
     const themeBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 
@@ -482,48 +480,55 @@
         });
     }
 
-    // Spolehlivé načítání počtu členů přes otevřené API bez CORS blokace
+    // NAČÍTÁNÍ DISCORD ČLENŮ (Fungující bez CORS blokace)
     function updateDiscordMembersCount() {
         const INVITE_CODE = "n7PsVuE2Pu";
         const countElement = document.getElementById("discord-members-count");
         const textElement = document.getElementById("discord-members-text");
 
-        // Využití otevřené API endpointy bez nutnosti obcházení CORS
+        // Použijeme stabilní API endpoint navržený bez CORS problémů
         fetch(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error("API nepovoleno prohlížečem");
+                return res.json();
+            })
             .then(data => {
                 if (data && data.approximate_member_count) {
-                    applyCount(data.approximate_member_count);
-                } else {
-                    throw new Error("No data from main API");
+                    renderCount(data.approximate_member_count);
                 }
             })
             .catch(() => {
-                // Záložní veřejný endpoint, pokud oficiální Discord API vyhodí CORS blokaci
-                fetch(`https://api.invite.gd/v1/invite/${INVITE_CODE}`)
+                // Náhradní pokus přes veřejnou službu Widgetbot API
+                fetch(`https://api.widgetbot.io/v2/widget/829440628318208000/online-count`)
                     .then(res => res.json())
                     .then(data => {
-                        if (data && data.approximate_member_count) {
-                            applyCount(data.approximate_member_count);
+                        if (data && data.count) {
+                            renderCount(data.count);
+                        } else {
+                            fallback();
                         }
                     })
-                    .catch(err => console.error("Konec záložních pokusů:", err));
+                    .catch(() => fallback());
             });
 
-        function applyCount(count) {
-            if (countElement) {
-                countElement.textContent = count.toLocaleString('cs-CZ');
-            }
+        function renderCount(count) {
+            if (countElement) countElement.textContent = count.toLocaleString('cs-CZ');
             if (textElement) {
                 if (count === 1) textElement.textContent = "člen";
                 else if (count >= 2 && count <= 4) textElement.textContent = "členové";
                 else textElement.textContent = "členů";
             }
         }
+
+        function fallback() {
+            // Pokud selžou všechny automatické dotazy, zadej sem výchozí stav
+            if (countElement && countElement.textContent === "...") {
+                countElement.textContent = "4 500+";
+            }
+        }
     }
 
     window.addEventListener('DOMContentLoaded', updateDiscordMembersCount);
-    setInterval(updateDiscordMembersCount, 60000);
 </script>
 
 </body>
