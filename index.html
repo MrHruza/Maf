@@ -1,70 +1,45 @@
 <!DOCTYPE html>
-<html lang="cs" data-theme="dark">
+<html lang="cs">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>MAF Games | Hlavní stránka</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAF Games | Minecraft Server</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fredoka:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- BAREVNÉ PROMĚNNÉ A GRADIENTY --- */
-        :root[data-theme="dark"] {
-            --bg-gradient: linear-gradient(135deg, #0b1329 0%, #040814 100%);
-            --bg-card: rgba(30, 41, 59, 0.75);
-            --bg-card-solid: #1e293b;
-            --bg-nav: #0f172a;
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --accent-blue: #38bdf8;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --footer-bg: #040814;
-        }
-
-        :root[data-theme="light"] {
-            --bg-gradient: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
-            --bg-card: rgba(255, 255, 255, 0.85);
-            --bg-card-solid: #ffffff;
-            --bg-nav: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --accent-blue: #0284c7;
-            --border-color: rgba(0, 0, 0, 0.08);
-            --footer-bg: #bfdbfe;
-        }
-
+        /* --- ZÁKLADNÍ NASTAVENÍ STRÁNKY --- */
         *, *::before, *::after {
             box-sizing: border-box;
-        }
-
-        html, body {
             margin: 0;
             padding: 0;
-            width: 100%;
-            overflow-x: hidden;
-            background: var(--bg-gradient);
-            background-attachment: fixed;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-main);
-            scroll-behavior: smooth;
         }
 
-        /* HORNÍ LIŠTA (NAVBAR) */
+        body {
+            font-family: 'Segoe UI', Roboto, 'Montserrat', sans-serif;
+            background: #090b15;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGAČNÍ LIŠTA --- */
         .navbar-header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 70px;
-            background-color: var(--bg-nav);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            z-index: 99999;
-            padding: 0 15px;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 999;
             display: flex;
             align-items: center;
+            padding: 0 20px;
         }
 
         .navbar-container {
@@ -76,134 +51,69 @@
             justify-content: space-between;
         }
 
-        .navbar-logo-img img {
-            height: 38px;
-            max-width: 130px;
-            width: auto;
-            object-fit: contain;
-            display: block;
+        .navbar-logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #38bdf8;
+            text-decoration: none;
+            letter-spacing: 1px;
         }
 
-        /* MENU PRO DESKTOP */
         .navbar-menu {
             display: flex;
-            align-items: center;
-            gap: 20px;
+            gap: 25px;
         }
 
         .nav-item {
-            color: var(--text-muted);
+            color: #94a3b8;
             text-decoration: none;
-            font-size: 0.95rem;
             font-weight: 600;
+            font-size: 0.95rem;
             transition: color 0.2s ease;
         }
 
         .nav-item:hover, .nav-item.active {
-            color: var(--accent-blue);
+            color: #38bdf8;
         }
 
-        .nav-right-tools {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .theme-toggle-btn, .mobile-toggle-btn {
-            background: rgba(56, 189, 248, 0.15);
-            border: 2px solid var(--accent-blue);
-            color: var(--accent-blue);
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .mobile-toggle-btn {
-            display: none;
-        }
-
-        /* ROZBALOVACÍ MENU PRO MOBILY */
-        @media (max-width: 768px) {
-            .mobile-toggle-btn {
-                display: flex;
-            }
-
-            .navbar-menu {
-                display: none;
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: var(--bg-nav);
-                flex-direction: column;
-                padding: 15px;
-                gap: 10px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-                border-bottom: 3px solid var(--accent-blue);
-            }
-
-            .navbar-menu.show {
-                display: flex !important;
-            }
-
-            .nav-item {
-                width: 100%;
-                text-align: center;
-                padding: 12px 0;
-                background: var(--bg-card);
-                border: 1px solid var(--border-color);
-                border-radius: 8px;
-                font-size: 1rem;
-                font-weight: 700;
-                color: var(--text-main);
-            }
-        }
-
-        /* MAIN CONTAINER */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 110px 20px 60px 20px;
-        }
-
-        /* HERO SEKCE */
+        /* --- HERO SEKCE (MINECRAFT INTRO) --- */
         .hero-section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 40px 10px 60px 10px;
+            padding: 100px 20px 40px 20px;
+            background: radial-gradient(circle at center, rgba(30, 41, 59, 0.5) 0%, rgba(9, 11, 21, 1) 100%);
         }
 
-        .hero-logo {
-            max-width: 320px;
-            width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .hero-desc {
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            line-height: 1.6;
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #b9bbbe;
+            max-width: 650px;
+            margin-bottom: 35px;
         }
 
-        /* KOPÍROVACÍ TLAČÍTKO IP */
+        /* Tlačítko pro kopírování IP */
         .ip-copy-btn {
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            background: rgba(56, 189, 248, 0.1);
-            border: 2px dashed var(--accent-blue);
-            color: var(--text-main);
+            background: rgba(88, 101, 242, 0.1);
+            border: 2px dashed #5865F2;
+            color: #ffffff;
             padding: 14px 28px;
-            border-radius: 12px;
+            border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
@@ -211,18 +121,27 @@
         }
 
         .ip-copy-btn:hover {
-            background: rgba(56, 189, 248, 0.25);
-            transform: scale(1.03);
+            background: rgba(88, 101, 242, 0.25);
+            transform: translateY(-2px);
         }
 
-        /* DISCORD SEKCE */
+        .ip-copy-btn i {
+            color: #5865F2;
+        }
+
+        /* --- STYLOVÁNÍ A POZADÍ DISCORD SEKCE --- */
         .discord-custom-block {
-            background: #0f172a; 
-            border: 1px solid var(--border-color); 
-            border-radius: 20px;
-            padding: 40px;
+            background: linear-gradient(135deg, #14142623 0%, #1a1d3879 100%); 
+            border: 1px solid rgba(242, 206, 88, 0); 
+            border-radius: 24px;
+            padding: 50px;
             margin: 40px auto;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            max-width: 1100px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 
+                        0 0 40px rgba(88, 101, 242, 0.05); 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            box-sizing: border-box;
         }
 
         .discord-content-wrapper {
@@ -232,6 +151,7 @@
             gap: 40px;
         }
 
+        /* Levá textová část */
         .discord-text-side {
             flex: 1.2;
             display: flex;
@@ -239,72 +159,77 @@
             align-items: flex-start;
         }
 
+        /* Horní odznáček s počtem lidí */
         .discord-status-badge {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            background: #5865F2;
-            padding: 6px 14px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            background: rgba(88, 101, 242, 0.15);
+            border: 1px solid rgba(88, 101, 242, 0.4);
+            padding: 8px 16px;
+            border-radius: 50px;
+            margin-bottom: 25px;
         }
 
         .badge-icon {
-            color: #ffffff;
-            font-size: 1.1rem;
+            width: 20px;
+            height: auto;
         }
 
         .badge-text {
-            color: #ffffff;
+            color: #5865F2; /* Discord modro-fialová */
             font-weight: 700;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
         }
 
-        .online-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #23a55a;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
+        /* Hlavní nadpis a text */
         .discord-title {
-            color: #ffffff;
-            font-size: 2.1rem;
+            color: #f0b638;
+            font-size: 2.0rem;
             font-weight: 800;
             margin: 0 0 15px 0;
             line-height: 1.2;
         }
 
         .discord-perex {
-            color: #94a3b8;
-            font-size: 0.95rem;
+            color: #b9bbbe;
+            font-size: 1.05rem;
             line-height: 1.6;
-            margin: 0 0 25px 0;
+            margin: 0 0 30px 0;
         }
 
+        /* Moderní svítící tlačítko */
         .discord-join-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             background-color: #5865F2;
             color: #ffffff;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1rem;
-            padding: 12px 28px;
-            border-radius: 25px;
+            font-size: 1.1rem;
+            padding: 16px 35px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(88, 101, 242, 0.35);
             transition: all 0.25s ease;
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
         }
 
         .discord-join-btn:hover {
             background-color: #4752c4;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(88, 101, 242, 0.5);
         }
 
+        .discord-join-btn i {
+            transition: transform 0.2s ease;
+        }
+
+        .discord-join-btn:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Pravá obrázková část */
         .discord-image-side {
             flex: 0.8;
             display: flex;
@@ -314,111 +239,93 @@
 
         .discord-main-img {
             width: 100%;
-            max-width: 220px;
+            max-width: 200px;
             height: auto;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
-            animation: floatAnimation 3.5s ease-in-out infinite;
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+            animation: floatAnimation 4s ease-in-out infinite;
         }
 
+        /* Animace vznášení pro obrázek */
         @keyframes floatAnimation {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
+            50% { transform: translateY(-30px); }
             100% { transform: translateY(0px); }
         }
 
-        @media (max-width: 768px) {
+        /* PATIČKA */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- RESPONSIVITA (PRO MOBILY) --- */
+        @media (max-width: 850px) {
+            .hero-title {
+                font-size: 2.3rem;
+            }
             .discord-content-wrapper {
                 flex-direction: column-reverse;
                 text-align: center;
-                gap: 25px;
+                gap: 30px;
             }
             .discord-text-side {
                 align-items: center;
             }
             .discord-custom-block {
-                padding: 30px 20px;
-                margin: 20px 0;
+                padding: 35px 20px;
+                margin: 20px;
             }
             .discord-title {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
             .discord-main-img {
-                max-width: 170px;
+                max-width: 200px;
             }
-        }
-
-        /* FOOTER */
-        footer { 
-            background: var(--footer-bg); 
-            padding: 25px 20px; 
-            text-align: center; 
-            color: var(--text-muted); 
-            font-size: 0.85rem; 
-            border-top: 1px solid var(--border-color);
-        }
-
-        footer strong {
-            color: var(--text-main);
         }
     </style>
 </head>
 <body>
 
-<header class="navbar-header">
-    <div class="navbar-container">
-        <a href="index.html" class="navbar-logo-img">
-            <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games Logo">
-        </a>
-
-        <nav class="navbar-menu" id="nav-menu">
-            <a href="index.html" class="nav-item active" onclick="toggleMenu()">Domů</a>
-            <a href="pravidla.html" class="nav-item" onclick="toggleMenu()">Pravidla</a>
-            <a href="team.html" class="nav-item" onclick="toggleMenu()">Náš tým</a>
-            <a href="#discord-sekce" class="nav-item" onclick="toggleMenu()">Discord</a>
-        </nav>
-
-        <div class="nav-right-tools">
-            <button id="theme-toggle" class="theme-toggle-btn" title="Přepnout režim">
-                <i class="fa-solid fa-moon"></i>
-            </button>
-            
-            <button class="mobile-toggle-btn" onclick="toggleMenu()" title="Otevřít menu">
-                <i class="fa-solid fa-bars" id="menu-icon"></i>
-            </button>
+    <header class="navbar-header">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo-text">MAF GAMES</a>
+            <nav class="navbar-menu">
+                <a href="#" class="nav-item active">Domů</a>
+                <a href="#discord-section" class="nav-item">Discord</a>
+            </nav>
         </div>
-    </div>
-</header>
+    </header>
 
-<div class="container">
     <section class="hero-section">
-        <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games" class="hero-logo">
-        <p class="hero-desc">Vítej na komunitním Minecraft serveru! Užij si skvělý zážitek a připoj se ještě dnes.</p>
-        
+        <h1 class="hero-title">MAF GAMES</h1>
+        <p class="hero-subtitle">Vítej na komunitním Minecraft serveru! Užij si skvělý zážitek a připoj se ještě dnes.</p>
+
         <button class="ip-copy-btn" onclick="copyIP()">
             <i class="fa-regular fa-copy"></i>
             <span id="ip-text">mc.mafgames.cz</span>
         </button>
     </section>
 
-    <div id="discord-sekce" class="discord-custom-block">
+    <div id="discord-section" class="discord-custom-block">
         <div class="discord-content-wrapper">
             
             <div class="discord-text-side">
                 <div class="discord-status-badge">
-                    <i class="fa-brands fa-discord badge-icon"></i>
-                    <div class="badge-text">
-                        <span id="discord-online-dot" class="online-dot"></span>
-                        <span id="discord-members-count">---</span> uživatelů
-                    </div>
+                    <img src="https://en.wikifur.com/w/images/d/d0/Discord_logo.png" alt="Discord Logo" class="badge-icon"/>
+                    <div class="badge-text"><span id="discord-members-count">...</span> UŽIVATELŮ</div>
                 </div>
                 
-                <h2 class="discord-title">Přidej se k naší discord komunitě</h2>
+                <h2 class="discord-title">Přidej se k naší Discord komunitě!</h2>
                 <p class="discord-perex">
-                    Naše komunita je prostě fajn, a my věříme, že i ty si v naší super komunitě najdeš své lidi, se kterými si rád popíšeš, zavoláš nebo třeba poobchoduješ.
+                    Naše komunita je zkrátka skvělá. Věříme, že i ty u nás najdeš lidi, se kterými si rád popíšeš v chatu, pokecáš ve voice kanálech, domluvíš společnou hru nebo bezpečně poobchoduješ přímo na serveru.
                 </p>
                 
-                <a href="https://discord.gg/n7PsVuE2Pu" target="_blank" class="discord-join-btn">
-                    Přidat se hned!
+                <a href="https://discord.com/invite/n7PsVuE2Pu" target="_blank" class="discord-join-btn">
+                    <span>Připoj se</span>
+                    <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
             
@@ -428,75 +335,61 @@
 
         </div>
     </div>
-</div>
 
-<footer>
-    <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>.</p>
-</footer>
+    <footer>
+        <p>&copy; 2026 MAF Games. Všechna práva vyhrazena.</p>
+    </footer>
 
-<script>
-    // Funkce pro otevření/zavření mobilního menu
-    function toggleMenu() {
-        const menu = document.getElementById('nav-menu');
-        const icon = document.getElementById('menu-icon');
-        
-        menu.classList.toggle('show');
-
-        if (menu.classList.contains('show')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
-        } else {
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
+    <script>
+        // KOPÍROVÁNÍ MINECRAFT IP
+        function copyIP() {
+            const ip = "mc.mafgames.cz";
+            navigator.clipboard.writeText(ip);
+            const ipText = document.getElementById('ip-text');
+            ipText.textContent = "IP ZKOPÍROVÁNA!";
+            setTimeout(() => {
+                ipText.textContent = ip;
+            }, 2000);
         }
-    }
 
-    // Kopírování IP adresy
-    function copyIP() {
-        const ip = "mc.mafgames.cz";
-        navigator.clipboard.writeText(ip);
-        const textSpan = document.getElementById('ip-text');
-        textSpan.textContent = "IP adresa zkopírována!";
-        setTimeout(() => {
-            textSpan.textContent = ip;
-        }, 2000);
-    }
+        // NAČÍTÁNÍ POČTU ČLENŮ Z DISCORD POZVÁNKY
+        async function updateDiscordMembersCount() {
+            const INVITE_CODE = "n7PsVuE2Pu";
+            const TEXT_FIELD_ID = "discord-members-count";
+            const element = document.getElementById(TEXT_FIELD_ID);
 
-    // Přepínání světlého a tmavého režimu
-    const themeBtn = document.getElementById('theme-toggle');
-    const htmlElement = document.documentElement;
-
-    themeBtn.addEventListener('click', () => {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        htmlElement.setAttribute('data-theme', newTheme);
-        themeBtn.innerHTML = newTheme === 'dark' 
-            ? '<i class="fa-solid fa-moon"></i>' 
-            : '<i class="fa-solid fa-sun"></i>';
-    });
-
-    // Automatické načítání počtu členů z Discord API
-    function updateDiscordMembersCount() {
-        const INVITE_CODE = "n7PsVuE2Pu";
-        const TEXT_FIELD_ID = "discord-members-count";
-
-        fetch(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.approximate_member_count) {
-                    document.getElementById(TEXT_FIELD_ID).textContent = data.approximate_member_count;
+            try {
+                let response = await fetch(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`);
+                
+                if (!response.ok) {
+                    response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`)}`);
+                    const proxyData = await response.json();
+                    const data = JSON.parse(proxyData.contents);
+                    if (data.approximate_member_count && element) {
+                        element.textContent = new Intl.NumberFormat('cs-CZ').format(data.approximate_member_count);
+                    }
+                    return;
                 }
-            })
-            .catch(error => {
-                console.error("Chyba při načítání Discord členů:", error);
-                document.getElementById(TEXT_FIELD_ID).textContent = "4540";
-            });
-    }
 
-    window.addEventListener('DOMContentLoaded', updateDiscordMembersCount);
-    setInterval(updateDiscordMembersCount, 120000);
-</script>
+                const data = await response.json();
+                if (data.approximate_member_count && element) {
+                    element.textContent = new Intl.NumberFormat('cs-CZ').format(data.approximate_member_count);
+                }
+            } catch (error) {
+                console.error("Chyba při načítání počtu členů:", error);
+                if (element && element.textContent === "...") {
+                    element.textContent = "4 540";
+                }
+            }
+        }
 
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateDiscordMembersCount);
+        } else {
+            updateDiscordMembersCount();
+        }
+        
+        setInterval(updateDiscordMembersCount, 180000);
+    </script>
 </body>
 </html>
