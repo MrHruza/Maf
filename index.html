@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>MAF Games | Minecraft Server</title>
+    <title>MAF Games | Hlavní stránka</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- BAREVNÉ PROMĚNNÉ --- */
+        /* --- BAREVNÉ PROMĚNNÉ A GRADIENTY --- */
         :root[data-theme="dark"] {
             --bg-gradient: linear-gradient(135deg, #0b1329 0%, #040814 100%);
             --bg-card: rgba(30, 41, 59, 0.75);
@@ -76,7 +76,6 @@
             justify-content: space-between;
         }
 
-        /* Logo v liště */
         .navbar-logo-img img {
             height: 38px;
             max-width: 130px;
@@ -85,7 +84,7 @@
             display: block;
         }
 
-        /* Menu pro PC */
+        /* MENU PRO DESKTOP */
         .navbar-menu {
             display: flex;
             align-items: center;
@@ -104,7 +103,6 @@
             color: var(--accent-blue);
         }
 
-        /* Tlačítka vpravo */
         .nav-right-tools {
             display: flex;
             align-items: center;
@@ -167,150 +165,100 @@
             }
         }
 
-        /* HERO SEKCE */
-        .hero-section {
-            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.85)), 
-                        url('https://github.com/user-attachments/assets/23fd6b26-04be-453e-bfcd-5fde2ecb87e8') no-repeat center center;
-            background-size: cover;
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 90px;
-            text-align: center;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            padding: 0 20px;
-        }
-
-        .hero-logo-main {
-            max-width: 250px;
-            width: 100%;
-            height: auto;
-        }
-
-        .hero-subtitle {
-            font-size: 1.05rem;
-            color: #e2e8f0;
-            max-width: 500px;
-            margin: 0;
-        }
-
-        .hero-ip-box {
-            background: rgba(30, 41, 59, 0.9);
-            border: 2px dashed var(--accent-blue);
-            padding: 12px 25px;
-            border-radius: 30px;
-            color: #ffffff;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            margin-top: 5px;
-        }
-
-        .copy-toast {
-            font-size: 0.85rem;
-            color: var(--accent-blue);
-            height: 18px;
-            font-weight: 600;
-        }
-
-        /* OBSAHOVÉ SEKCE A KARTY */
-        .section-container {
+        /* MAIN CONTAINER */
+        .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 110px 20px 60px 20px;
         }
 
-        .section-title {
-            font-size: 2rem;
-            color: var(--accent-blue);
+        /* HERO SEKCE */
+        .hero-section {
             text-align: center;
-            margin-bottom: 8px;
-            font-weight: 800;
+            padding: 40px 10px 60px 10px;
         }
 
-        .section-subtitle {
-            text-align: center;
+        .hero-logo {
+            max-width: 320px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            margin-bottom: 35px;
-            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        .info-grid, .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
+        /* KOPÍROVACÍ TLAČÍTKO IP */
+        .ip-copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 2px dashed var(--accent-blue);
+            color: var(--text-main);
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
         }
 
-        .info-card, .game-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 25px 20px;
-            text-align: center;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+        .ip-copy-btn:hover {
+            background: rgba(56, 189, 248, 0.25);
+            transform: scale(1.03);
         }
 
-        .info-card:hover, .game-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-blue);
+        /* DISCORD SEKCE */
+        .discord-custom-block {
+            background: #0f172a; 
+            border: 1px solid var(--border-color); 
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
-        .info-card i, .game-card i {
-            font-size: 2.2rem;
-            color: var(--accent-blue);
-            margin-bottom: 12px;
+        .discord-content-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
         }
 
-        .info-card h3, .game-card h3 {
-            margin: 0 0 8px 0;
-        }
-
-        .info-card p, .game-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        /* DISCORD BANNER */
-        .discord-banner {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 30px 20px;
+        .discord-text-side {
+            flex: 1.2;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 20px;
+            align-items: flex-start;
         }
 
-        @media (min-width: 769px) {
-            .discord-banner {
-                flex-direction: row;
-                text-align: left;
-                justify-content: space-between;
-                padding: 40px;
-            }
-        }
-
-        .discord-online-pill {
-            background: #5865F2;
-            color: #fff;
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 12px;
+        .discord-status-badge {
             display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #5865F2;
+            padding: 6px 14px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .badge-icon {
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .badge-text {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
             align-items: center;
             gap: 6px;
         }
@@ -320,135 +268,97 @@
             height: 8px;
             background-color: #23a55a;
             border-radius: 50%;
+            display: inline-block;
         }
 
-        .btn-discord {
+        .discord-title {
+            color: #ffffff;
+            font-size: 2.1rem;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+        }
+
+        .discord-perex {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0 0 25px 0;
+        }
+
+        .discord-join-btn {
             display: inline-block;
-            background: #5865F2;
-            color: #fff;
-            padding: 12px 25px;
-            border-radius: 25px;
+            background-color: #5865F2;
+            color: #ffffff;
             text-decoration: none;
             font-weight: 700;
+            font-size: 1rem;
+            padding: 12px 28px;
+            border-radius: 25px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
         }
 
-        .discord-graphic-img {
-            max-width: 240px;
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
+        .discord-join-btn:hover {
+            background-color: #4752c4;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.6);
         }
 
-        /* HLASOVÁNÍ */
-        .vote-box {
-            background: var(--bg-card);
-            border: 2px dashed var(--accent-blue);
-            border-radius: 16px;
-            padding: 35px 20px;
-            text-align: center;
-        }
-
-        .vote-badge {
-            display: inline-block;
-            background: var(--accent-blue);
-            color: #fff;
-            font-weight: 800;
-            padding: 6px 18px;
-            border-radius: 15px;
-            font-size: 0.95rem;
-            margin-bottom: 12px;
-        }
-
-        /* VYSKAKOVACÍ WIDGET V ROHU */
-        .slide-widget {
-            position: fixed;
-            bottom: 20px;
-            right: -400px;
-            width: 320px;
-            background: var(--bg-card-solid);
-            border: 2px solid var(--accent-blue);
-            border-radius: 16px;
-            padding: 18px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-            z-index: 10000;
+        .discord-image-side {
+            flex: 0.8;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            transition: all 0.5s ease;
+            justify-content: center;
+            align-items: center;
         }
 
-        .slide-widget.show {
-            right: 20px;
+        .discord-main-img {
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+            animation: floatAnimation 3.5s ease-in-out infinite;
+        }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
         }
 
         @media (max-width: 768px) {
-            .slide-widget {
-                left: 15px;
-                right: 15px;
-                bottom: -300px;
-                width: auto;
+            .discord-content-wrapper {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 25px;
             }
-            .slide-widget.show {
-                bottom: 15px;
-                right: 15px;
+            .discord-text-side {
+                align-items: center;
+            }
+            .discord-custom-block {
+                padding: 30px 20px;
+                margin: 20px 0;
+            }
+            .discord-title {
+                font-size: 1.6rem;
+            }
+            .discord-main-img {
+                max-width: 170px;
             }
         }
 
-        .widget-close {
-            position: absolute;
-            top: 8px;
-            right: 10px;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .widget-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .widget-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .widget-text h4 {
-            margin: 0;
-            font-size: 1rem;
-        }
-
-        .widget-text p {
-            margin: 3px 0 0 0;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .btn-widget {
-            display: block;
-            text-align: center;
-            background: #5865F2;
-            color: #fff;
-            padding: 8px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-        }
-
-        footer {
-            background: var(--footer-bg);
-            padding: 20px;
-            text-align: center;
+        /* FOOTER */
+        footer { 
+            background: var(--footer-bg); 
+            padding: 25px 20px; 
+            text-align: center; 
+            color: var(--text-muted); 
+            font-size: 0.85rem; 
             border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.85rem;
+        }
+
+        footer strong {
+            color: var(--text-main);
         }
     </style>
 </head>
@@ -461,7 +371,7 @@
         </a>
 
         <nav class="navbar-menu" id="nav-menu">
-            <a href="#domu" class="nav-item active" onclick="toggleMenu()">Domů</a>
+            <a href="index.html" class="nav-item active" onclick="toggleMenu()">Domů</a>
             <a href="pravidla.html" class="nav-item" onclick="toggleMenu()">Pravidla</a>
             <a href="team.html" class="nav-item" onclick="toggleMenu()">Náš tým</a>
             <a href="#discord-sekce" class="nav-item" onclick="toggleMenu()">Discord</a>
@@ -479,108 +389,53 @@
     </div>
 </header>
 
-<section id="domu" class="hero-section">
-    <div class="hero-content">
-        <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games Logo" class="hero-logo-main">
-        <p class="hero-subtitle">Vítej na komunitním Minecraft serveru! Užij si skvělý zážitek a připoj se ještě dnes.</p>
+<div class="container">
+    <section class="hero-section">
+        <img src="https://github.com/user-attachments/assets/9c151858-5dd8-41a6-bb35-07664118c76c" alt="MAF Games" class="hero-logo">
+        <p class="hero-desc">Vítej na komunitním Minecraft serveru! Užij si skvělý zážitek a připoj se ještě dnes.</p>
         
-        <div class="hero-ip-box" onclick="copyIP()">
-            <i class="fa-solid fa-copy"></i>
+        <button class="ip-copy-btn" onclick="copyIP()">
+            <i class="fa-regular fa-copy"></i>
             <span id="ip-text">mc.mafgames.cz</span>
-        </div>
-        <div id="copy-toast" class="copy-toast"></div>
-    </div>
-</section>
+        </button>
+    </section>
 
-<section id="o-nas" class="section-container">
-    <h2 class="section-title">O NAŠEM SERVERU</h2>
-    <p class="section-subtitle">Proč hrát právě u nás na MAF Games?</p>
-    
-    <div class="info-grid">
-        <div class="info-card">
-            <i class="fa-solid fa-users"></i>
-            <h3>Skvělá Komunita</h3>
-            <p>Přátelští hráči a aktivní tým, který ti vždy rád pomůže s jakýmkoliv dotazem.</p>
-        </div>
-        <div class="info-card">
-            <i class="fa-solid fa-trophy"></i>
-            <h3>Pravidelné Eventy</h3>
-            <p>Každý týden pořádáme soutěže o unikátní odměny a výhody přímo ve hře.</p>
-        </div>
-        <div class="info-card">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h3>Aktivní A-Tým</h3>
-            <p>Náš týmový admin panel se stará o klidnou hru bez cheaterů a škůdců.</p>
-        </div>
-    </div>
-</section>
-
-<section id="rezimy" class="section-container" style="padding-top: 0;">
-    <h2 class="section-title">HERNÍ REŽIMY</h2>
-    <p class="section-subtitle">Co si u nás můžeš zahrát?</p>
-
-    <div class="games-grid">
-        <div class="game-card">
-            <i class="fa-solid fa-cubes"></i>
-            <h3>MafSMP</h3>
-            <p>Speciální zážitek, kde s frakcemi a přáteli buduješ své království.</p>
-        </div>
-        <div class="game-card">
-            <i class="fa-solid fa-tree"></i>
-            <h3>Survival</h3>
-            <p>Klasické přežití obohacené o rezidence, trh a speciální prvky.</p>
-        </div>
-        <div class="game-card">
-            <i class="fa-solid fa-calendar-check"></i>
-            <h3>Eventy</h3>
-            <p>Speciální mini-hry a pravidelné turnaje o věcné ceny.</p>
-        </div>
-    </div>
-</section>
-
-<section id="discord-sekce" class="section-container" style="padding-top: 0;">
-    <div class="discord-banner">
-        <div class="discord-info">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; justify-content: center;">
-                <span style="font-size: 1.4rem; font-weight: 800;"><i class="fa-brands fa-discord" style="color: #5865F2;"></i> Discord</span>
-                <span class="discord-online-pill">
-                    <span class="online-dot"></span>
-                    <span id="discord-online-count">Načítání...</span>
-                </span>
+    <div id="discord-sekce" class="discord-custom-block">
+        <div class="discord-content-wrapper">
+            
+            <div class="discord-text-side">
+                <div class="discord-status-badge">
+                    <i class="fa-brands fa-discord badge-icon"></i>
+                    <div class="badge-text">
+                        <span id="discord-online-dot" class="online-dot"></span>
+                        <span id="discord-members-count">---</span> uživatelů
+                    </div>
+                </div>
+                
+                <h2 class="discord-title">Přidej se k naší discord komunitě</h2>
+                <p class="discord-perex">
+                    Naše komunita je prostě fajn, a my věříme, že i ty si v naší super komunitě najdeš své lidi, se kterými si rád popíšeš, zavoláš nebo třeba poobchoduješ.
+                </p>
+                
+                <a href="https://discord.gg/n7PsVuE2Pu" target="_blank" class="discord-join-btn">
+                    Přidat se hned!
+                </a>
             </div>
-            <h3 style="margin: 10px 0; font-size: 1.4rem;">Přidej se k naší discord komunitě</h3>
-            <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">Naše komunita je prostě fajn, a my věříme, že i ty si v naší super komunitě najdeš své lidi, se kterými si rád popíšete, zavoláš nebo třeba poobchoduješ.</p>
-            <a href="https://discord.gg/a6HTER5WP" target="_blank" class="btn-discord">Přidat se hned!</a>
-        </div>
-        <img src="https://github.com/user-attachments/assets/43f15886-1644-447a-a847-0c2715123eac" alt="Discord Grafika" class="discord-graphic-img">
-    </div>
-</section>
+            
+            <div class="discord-image-side">
+                <img src="https://github.com/user-attachments/assets/5e7b8581-6dc5-41ac-9e22-e3860e7e1ab6" alt="Discord Komunita" class="discord-main-img"/>
+            </div>
 
-<section class="section-container" style="padding-top: 0;">
-    <h2 class="section-title">HLASOVÁNÍ</h2>
-    <div class="vote-box">
-        <div class="vote-badge">JIŽ BRZY</div>
-        <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">Hlasování pro projekt MAF Games momentálně připravujeme.</p>
-    </div>
-</section>
-
-<footer>
-    <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>. Tento projekt není oficiálním produktem Mojang AB.</p>
-</footer>
-
-<div id="slide-widget" class="slide-widget">
-    <button class="widget-close" onclick="closeWidget()">&times;</button>
-    <div class="widget-content">
-        <img src="https://github.com/user-attachments/assets/43f15886-1644-447a-a847-0c2715123eac" alt="Discord Grafika" class="widget-img">
-        <div class="widget-text">
-            <h4>Připoj se k nám!</h4>
-            <p>Sleduj novinky a chatuj s komunitou na Discordu.</p>
         </div>
     </div>
-    <a href="https://discord.gg/a6HTER5WP" target="_blank" class="btn-widget"><i class="fa-brands fa-discord"></i> Otevřít Discord</a>
 </div>
 
+<footer>
+    <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>.</p>
+</footer>
+
 <script>
+    // Funkce pro otevření/zavření mobilního menu
     function toggleMenu() {
         const menu = document.getElementById('nav-menu');
         const icon = document.getElementById('menu-icon');
@@ -596,6 +451,18 @@
         }
     }
 
+    // Kopírování IP adresy
+    function copyIP() {
+        const ip = "mc.mafgames.cz";
+        navigator.clipboard.writeText(ip);
+        const textSpan = document.getElementById('ip-text');
+        textSpan.textContent = "IP adresa zkopírována!";
+        setTimeout(() => {
+            textSpan.textContent = ip;
+        }, 2000);
+    }
+
+    // Přepínání světlého a tmavého režimu
     const themeBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 
@@ -609,59 +476,26 @@
             : '<i class="fa-solid fa-sun"></i>';
     });
 
-    function copyIP() {
-        const ip = document.getElementById('ip-text').innerText;
-        navigator.clipboard.writeText(ip).then(() => {
-            const toast = document.getElementById('copy-toast');
-            toast.innerText = 'IP adresa byla zkopírována!';
-            setTimeout(() => {
-                toast.innerText = '';
-            }, 3000);
-        });
-    }
+    // Automatické načítání počtu členů z Discord API
+    function updateDiscordMembersCount() {
+        const INVITE_CODE = "n7PsVuE2Pu";
+        const TEXT_FIELD_ID = "discord-members-count";
 
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.getElementById('slide-widget').classList.add('show');
-        }, 3000);
-    });
-
-    function closeWidget() {
-        document.getElementById('slide-widget').classList.remove('show');
-    }
-
-    /* AUTOMATICKÉ A SPOLLEHLIVÉ POČÍTADLO PRO DISCORD */
-    async function updateDiscordMembersCount() {
-        const countSpan = document.getElementById("discord-online-count");
-        const INVITE_CODE = "a6HTER5WP"; // Kód tvé pozvánky ze stránky
-
-        const apis = [
-            `https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`,
-            `https://api.allorigins.win/raw?url=` + encodeURIComponent(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`)
-        ];
-
-        for (let url of apis) {
-            try {
-                let res = await fetch(url);
-                if (res.ok) {
-                    let data = await res.json();
-                    let count = data.approximate_member_count || data.presence_count;
-                    if (count) {
-                        countSpan.textContent = new Intl.NumberFormat('cs-CZ').format(count) + " uživatelů";
-                        return;
-                    }
+        fetch(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.approximate_member_count) {
+                    document.getElementById(TEXT_FIELD_ID).textContent = data.approximate_member_count;
                 }
-            } catch (e) {
-                console.warn("Chyba při načítání Discordu:", e);
-            }
-        }
-        
-        // V případě výpadku API se zobrazí záložní hodnota
-        countSpan.textContent = "4 540 uživatelů";
+            })
+            .catch(error => {
+                console.error("Chyba při načítání Discord členů:", error);
+                document.getElementById(TEXT_FIELD_ID).textContent = "4540";
+            });
     }
 
-    document.addEventListener("DOMContentLoaded", updateDiscordMembersCount);
-    setInterval(updateDiscordMembersCount, 60000);
+    window.addEventListener('DOMContentLoaded', updateDiscordMembersCount);
+    setInterval(updateDiscordMembersCount, 120000);
 </script>
 
 </body>
