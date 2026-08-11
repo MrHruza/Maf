@@ -400,7 +400,7 @@
         </button>
     </section>
 
-<div id="discord-sekce" class="discord-custom-block">
+    <div id="discord-sekce" class="discord-custom-block">
         <div class="discord-content-wrapper">
             
             <div class="discord-text-side">
@@ -428,6 +428,7 @@
 
         </div>
     </div>
+</div>
 
 <footer>
     <p>Všechna práva vyhrazena &copy; 2026 <strong>MAF Games</strong>.</p>
@@ -438,6 +439,8 @@
     function toggleMenu() {
         const menu = document.getElementById('nav-menu');
         const icon = document.getElementById('menu-icon');
+        
+        if (!menu || !icon) return;
         
         menu.classList.toggle('show');
 
@@ -455,10 +458,12 @@
         const ip = "mc.mafgames.cz";
         navigator.clipboard.writeText(ip);
         const textSpan = document.getElementById('ip-text');
-        textSpan.textContent = "IP adresa zkopírována!";
-        setTimeout(() => {
-            textSpan.textContent = ip;
-        }, 2000);
+        if (textSpan) {
+            textSpan.textContent = "IP adresa zkopírována!";
+            setTimeout(() => {
+                textSpan.textContent = ip;
+            }, 2000);
+        }
     }
 
     // Přepínání světlého a tmavého režimu
@@ -477,45 +482,48 @@
         });
     }
 
-    // Automatické načítání reálného počtu členů z Discord linku
+    // Spolehlivé načítání počtu členů přes otevřené API bez CORS blokace
     function updateDiscordMembersCount() {
         const INVITE_CODE = "n7PsVuE2Pu";
         const countElement = document.getElementById("discord-members-count");
         const textElement = document.getElementById("discord-members-text");
 
-        // Použití CORS proxy pro obcházení CORS blokace v prohlížeči
-        const apiUrl = `https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`;
-        const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`;
-
-        fetch(proxyUrl)
-            .then(response => {
-                if (!response.ok) throw new Error("Chyba odpovědi z API");
-                return response.json();
-            })
+        // Využití otevřené API endpointy bez nutnosti obcházení CORS
+        fetch(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`)
+            .then(res => res.json())
             .then(data => {
                 if (data && data.approximate_member_count) {
-                    const count = data.approximate_member_count;
-                    countElement.textContent = count.toLocaleString('cs-CZ'); // Formátování čísla (např. 4 540)
-                    
-                    // Správné skloňování slova člen/členové/členů
-                    if (textElement) {
-                        if (count === 1) textElement.textContent = "člen";
-                        else if (count >= 2 && count <= 4) textElement.textContent = "členové";
-                        else textElement.textContent = "členů";
-                    }
+                    applyCount(data.approximate_member_count);
+                } else {
+                    throw new Error("No data from main API");
                 }
             })
-            .catch(error => {
-                console.error("Chyba při načítání Discord členů:", error);
-                // V případě chyby načtení
-                if (countElement.textContent === "---") {
-                    countElement.textContent = "Neznámo";
-                }
+            .catch(() => {
+                // Záložní veřejný endpoint, pokud oficiální Discord API vyhodí CORS blokaci
+                fetch(`https://api.invite.gd/v1/invite/${INVITE_CODE}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data && data.approximate_member_count) {
+                            applyCount(data.approximate_member_count);
+                        }
+                    })
+                    .catch(err => console.error("Konec záložních pokusů:", err));
             });
+
+        function applyCount(count) {
+            if (countElement) {
+                countElement.textContent = count.toLocaleString('cs-CZ');
+            }
+            if (textElement) {
+                if (count === 1) textElement.textContent = "člen";
+                else if (count >= 2 && count <= 4) textElement.textContent = "členové";
+                else textElement.textContent = "členů";
+            }
+        }
     }
 
     window.addEventListener('DOMContentLoaded', updateDiscordMembersCount);
-    setInterval(updateDiscordMembersCount, 120000); // Aktualizace každé 2 minuty
+    setInterval(updateDiscordMembersCount, 60000);
 </script>
 
 </body>
